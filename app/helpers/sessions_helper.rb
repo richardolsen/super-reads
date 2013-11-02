@@ -8,6 +8,10 @@ module SessionsHelper
     session[:session_token] = user.session_token
   end
 
+  def logged_in?
+    !current_user.nil?
+  end
+
   def logout_current_user!
     current_user.reset_session_token
     current_user.save!

@@ -10,6 +10,15 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :friendings,
+    :class_name => "Friending",
+    :primary_key => :id,
+    :foreign_key => :user_id
+
+  has_many :friends,
+    :through => :friendings,
+    :source => :friend
+
 
   def self.find_by_credentials(identifier, password)
     if /@/ =~ identifier
@@ -27,6 +36,11 @@ class User < ActiveRecord::Base
     SecureRandom::urlsafe_base64(16)
   end
 
+
+  def as_json(options = {})
+    options[:except] = [:password, :password_digest, :session_token, :identifier]
+    super(options)
+  end
 
   def password=(password)
     @password = password
