@@ -6,11 +6,18 @@ GooderReads.Views.UsersIndexView = Backbone.View.extend({
   },
 
   render: function() {
-    var content = this.template({
-      users: this.collection
-    });
+    var content = this.template();
 
     this.$el.html(content);
+
+    var $subEl = this.$el.find(".users-list")
+    this.collection.forEach(function(user) {
+      var detailView = new GooderReads.Views.UsersIndexDetailView({
+        model: user
+      });
+
+      $subEl.append(detailView.render().$el);
+    });
 
     return this;
   }

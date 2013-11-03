@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :password, :email, :firstname, :lastname, :identifier
   attr_reader :password
-  attr_accessor :identifier # used for the log in form
+
+  # used for the log in form
+  attr_accessor :identifier
+  attr_accessor :friended
+
 
   validates :username, :email, :uniqueness => true
   validates :username, :email, :firstname, :lastname, :session_token, :presence => true
