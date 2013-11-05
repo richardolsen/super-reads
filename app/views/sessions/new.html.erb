@@ -1,42 +1,65 @@
-<h1>Sign in</h1>
+<div class="row">
+  <div class="span6 offset3 login-box">
+    <div class="center">
+      <h3 style="color: #000000;font: bold 40px helvetica">BiblioPile</h3>
+    </div>
 
-<div class="center">
-  <form action="<%= session_url %>" method="post" role="form">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
-      <div class="errors">
+    <div class="center">
       <% if flash[:errors] %>
-        <ul>
-          <% flash[:errors].each do |error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
+        <div class="messages alert">
+          <ul>
+            <% flash[:errors].each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
+    </div>
+
+    <div class="row">
+      <div class="span3 login-element">
+        <h4><strong>Sign In</strong></h4>
+
+        <form action="<%= session_url %>" method="post" role="form">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+          <div class="form-group">
+            <label for="identifier">Username or email</label>
+            <input type="text"
+                   id="identifier"
+                   class="form-control"
+                   name="identifier"
+                   value="<%= @user.identifier %>"
+                   placeholder="Username/email">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                   id="password"
+                   class="form-control"
+                   name="password"
+                   placeholder="Password">
+          </div>
+
+          <div class="form-group">
+            <input type="submit"
+                   class="btn btn-large btn-primary"
+                   value="Sign in">
+          </div>
+        </form>
       </div>
+      <div class="span3 login-element">
+        <h4>Or sign in as guest:</h4>
 
-    <div class="form-group">
-      <label for="identifier">Username or email</label>
-      <input type="text"
-             id="identifier"
-             class="form-control"
-             name="identifier"
-             value="<%= @user.identifier %>"
-             placeholder="Username/email">
+        <form action="<%= session_url %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="guest" value="guest">
+          <input type="submit"
+                 class="btn btn-large btn-primary"
+                 value="Guest"/>
+        </form>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password"
-             id="password"
-             class="form-control"
-             name="password"
-             placeholder="Password">
-    </div>
-
-    <div class="form-group">
-      <input type="submit"
-             class="btn btn-large btn-primary"
-             value="Sign in">
-    </div>
-  </form>
+  </div>
 </div>

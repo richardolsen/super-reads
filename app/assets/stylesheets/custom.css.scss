@@ -1,5 +1,11 @@
 @import "bootstrap";
 
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html {
   overflow-y: scroll;
 }
@@ -96,4 +102,16 @@ p {
   width: 60%; /* respsonsive width */
   // margin-top: 10px;
   margin-left:-30%; /* width/2) */
+}
+
+.login-box {
+  //border: thin solid #000000;
+  border-radius: 15px;
+  background-color: #EEEEEE;
+  @include box_sizing;
+}
+
+.login-element {
+  padding: 5px;
+  @include box_sizing;
 }
