@@ -4,6 +4,11 @@ GooderReads::Application.routes.draw do
     put :friend, :on => :member
     put :unfriend, :on => :member
   end
+  resources :texts, :only => [:show, :index] do
+    resources :comments, :only => [:show, :index, :create]
+  end
+  resources :authors, :only => [:show, :index]
+  resources :genres, :only => [:show, :index]
 
   root :to => "static_pages#index"
 end

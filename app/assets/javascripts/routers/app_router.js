@@ -6,7 +6,8 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
 
   routes: {
     "": "userShow",
-    "users": "usersIndex"
+    "users": "usersIndex",
+    "user/:id": "userDetail"
   },
 
   userShow: function() {
@@ -26,6 +27,10 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     });
 
     this._swapView(index.render().$el);
+  },
+
+  userDetail: function(id) {
+
   },
 
   _swapView: function(newView) {

@@ -23,6 +23,16 @@ class User < ActiveRecord::Base
     :through => :friendings,
     :source => :friend
 
+  has_many :reviews,
+    :class_name => "Review",
+    :primary_key => :id,
+    :foreign_key => :user_id
+
+  has_many :comments,
+    :class_name => "Comment",
+    :primary_key => :id,
+    :foreign_key => :user_id
+
 
   def self.find_by_credentials(identifier, password)
     if /@/ =~ identifier

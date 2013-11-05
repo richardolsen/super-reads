@@ -84,3 +84,16 @@ p {
 .errors ul {
   list-style: none;
 }
+
+
+.friend-detail-popup {
+  display: none;
+  background-color: black;
+  color: white;
+}
+
+.modal {
+  width: 60%; /* respsonsive width */
+  // margin-top: 10px;
+  margin-left:-30%; /* width/2) */
+}
