@@ -4,4 +4,22 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-GooderReads::Application.config.secret_token = '3742f3f2f9d4647f4e0606bb84cf24843bd4ee57806925519273ad8f3fd2ef9f649ac50c0289f3df931f10751efd20ec5a1a30715146d795a30267aac2f361b5'
+
+# http://ruby.railstutorial.org/chapters/supplement?version=3.2#sec-security_updates
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+GooderReads::Application.config.secret_token = secure_token
