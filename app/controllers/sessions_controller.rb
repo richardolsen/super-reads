@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_credentials(params[:identifier], params[:password])
+    if params[:guest] == "guest"
+      @user = User.find_by_username("guest")
+    else
+      @user = User.find_by_credentials(params[:identifier], params[:password])
+    end
 
     if @user
       # current_user = @user
