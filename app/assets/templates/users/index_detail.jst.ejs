@@ -1,7 +1,10 @@
-<span class="user-detail"><%= user.escape("fullname") %></span>
-<button class="friend-button btn btn-xs btn-primary">
-  <%= user.get("friended") ? "unfriend" : "friend" %>
-</button>
+<div>
+  <span class="user-detail"><%= user.escape("fullname") %></span>
+  <button type="button" class="friend-button btn btn-xs">
+    <%= user.get("friended") ? "unfriend" : "friend" %>
+  </button>
+</div>
+<hr>
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

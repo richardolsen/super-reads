@@ -29,5 +29,23 @@ GooderReads.Models.User = Backbone.Model.extend({
         ;
       }
     });
+  },
+
+  birthDate: function() {
+    var bd = new Date(this.get("birthdate"));
+    return moment(bd).format('MMMM DD, YYYY')
+  },
+
+  joinDate: function() {
+    var dateCreated = new Date(this.get("created_at"));
+    return moment(dateCreated).format('MMMM, YYYY')
+  },
+
+  age: function() {
+    var birthdate = new Date(this.get("birthdate"));
+    var then = moment(birthdate);
+    var now = moment();
+
+    return then.fromNow(true);
   }
 });

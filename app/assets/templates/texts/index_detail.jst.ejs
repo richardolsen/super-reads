@@ -1,0 +1,12 @@
+<div>
+  <span class="text-detail"><%= text.escape("title") %></span><br>
+  <span>
+    Author:
+    <% text.get("authors").forEach(function(author) { %>
+      <a href="#/author/<%= author.escape("id") %>">
+        <%= author.escape("name") %>
+      </a>
+    <% }); %>
+  </span>
+</div>
+<hr>

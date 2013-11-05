@@ -41,10 +41,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
+  font-size: 18px;
+  letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
@@ -114,4 +114,31 @@ p {
 .login-element {
   padding: 5px;
   @include box_sizing;
+}
+
+.gray-box {
+  border: thin solid #EEEEEE;
+  border-radius: 15px;
+}
+
+.infoBoxRowTitle {
+  color:#382110;
+  font-weight:bold;
+  width:25%;
+  float:left;
+  margin:1px 0px
+}
+.infoBoxRowItem{
+  float:left;
+  width:75%;
+  margin:1px 0px
+}
+
+br.clear, div.clear {
+  display: block;
+  clear: both;
+  height: 0;
+  margin: 0;
+  font-size: 1px;
+  line-height: 0
 }

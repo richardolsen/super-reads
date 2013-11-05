@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require moment
 //= require js-routes
 //= require bootstrap
 //= require underscore

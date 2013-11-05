@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104212254) do
+ActiveRecord::Schema.define(:version => 20131105220250) do
 
   create_table "author_genres", :force => true do |t|
     t.integer  "author_id",  :null => false
@@ -132,6 +132,8 @@ ActiveRecord::Schema.define(:version => 20131104212254) do
     t.string   "email",           :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.date     "birthdate"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
