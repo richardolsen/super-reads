@@ -33,6 +33,15 @@ class User < ActiveRecord::Base
     :primary_key => :id,
     :foreign_key => :user_id
 
+  has_many :text_states,
+    :class_name => "TextState",
+    :primary_key => :id,
+    :foreign_key => :user_id
+
+  # has_many :texts,
+  #   :through => :text_states,
+  #   :source => :text
+
 
   def self.find_by_credentials(identifier, password)
     if /@/ =~ identifier
@@ -67,6 +76,21 @@ class User < ActiveRecord::Base
 
   def reset_session_token
     self.session_token = self.class.generate_session_token
+  end
+
+
+  def texts
+    texts = Text.find_by_sql([<<-SQL, self.id])
+        SELECT
+          texts.*,
+          text_states.state
+        FROM
+          texts
+        INNER JOIN
+          text_states ON (texts.id = text_states.text_id)
+        WHERE
+          text_states.user_id = ?
+      SQL
   end
 
 

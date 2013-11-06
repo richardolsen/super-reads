@@ -1,7 +1,7 @@
 GooderReads.Views.TextsIndexView = Backbone.View.extend({
   template: JST["texts/index"],
 
-  initialize: function() {
+  initialize: function(options) {
     this.listenTo(this.collection, "sync add remove", this.render);
   },
 
@@ -10,10 +10,12 @@ GooderReads.Views.TextsIndexView = Backbone.View.extend({
 
     this.$el.html(content);
 
-    var $subEl = this.$el.find(".texts-list")
+    var that = this;
+    var $subEl = this.$el.find(".texts-list");
     this.collection.forEach(function(text) {
       var detailView = new GooderReads.Views.TextsIndexDetailView({
-        model: text
+        model: text,
+        user: that.user
       });
 
       $subEl.append(detailView.render().$el);

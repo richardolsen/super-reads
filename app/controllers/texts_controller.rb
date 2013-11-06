@@ -5,7 +5,12 @@ class TextsController < ApplicationController
   end
 
   def index
-    texts = Text.includes(:authors).all
+    if logged_in?
+      texts = Text.includes(:authors).find_texts_for_user(current_user.id)
+    else
+      texts = Text.includes(:authors).all
+    end
+
     render :json => texts, :include => :authors
   end
 end

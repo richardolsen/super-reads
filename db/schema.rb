@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131105220250) do
+ActiveRecord::Schema.define(:version => 20131105232752) do
 
   create_table "author_genres", :force => true do |t|
     t.integer  "author_id",  :null => false
@@ -110,6 +110,18 @@ ActiveRecord::Schema.define(:version => 20131105220250) do
   add_index "text_genres", ["genre_id"], :name => "index_text_genres_on_genre_id"
   add_index "text_genres", ["text_id", "genre_id"], :name => "index_text_genres_on_text_id_and_genre_id", :unique => true
   add_index "text_genres", ["text_id"], :name => "index_text_genres_on_text_id"
+
+  create_table "text_states", :force => true do |t|
+    t.integer  "text_id",    :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "text_states", ["text_id", "user_id"], :name => "index_text_states_on_text_id_and_user_id", :unique => true
+  add_index "text_states", ["text_id"], :name => "index_text_states_on_text_id"
+  add_index "text_states", ["user_id"], :name => "index_text_states_on_user_id"
 
   create_table "texts", :force => true do |t|
     t.string   "title",          :null => false

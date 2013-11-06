@@ -5,14 +5,15 @@ window.GooderReads = {
   Routers: {},
   initialize: function() {
     if(GooderReads.userData) {
-      var user = new GooderReads.Models.User(GooderReads.userData);
+      GooderReads.user = new GooderReads.Models.User(GooderReads.userData);
 
-      this.installHeader($(".header"), user);
+      this.installHeader($(".header"), GooderReads.user);
 
-      new GooderReads.Routers.AppRouter($("#main"), user);
+      new GooderReads.Routers.AppRouter($("#main"), GooderReads.user);
 
       Backbone.history.start();
     } else {
+      GooderReads.user = undefined;
       this.installHeader($(".header"), null);
     }
   },
@@ -25,6 +26,10 @@ window.GooderReads = {
     header.render();
 
     $headerEl.html(header.$el);
+  },
+
+  loggedIn: function() {
+    return GooderReads.user != undefined;
   }
 };
 

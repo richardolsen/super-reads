@@ -8,5 +8,27 @@
       </a>
     <% }); %>
   </span>
+
+  <% if(GooderReads.loggedIn()) { %>
+    <span>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+          <%= text.stateString() %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="#" data-state="queue">Want to read</a>
+          </li>
+          <li>
+            <a href="#" data-state="read">Read</a>
+          </li>
+          <li>
+            <a href="#" data-state="current">Currently reading</a>
+          </li>
+        </ul>
+      </div>
+    </span>
+  <% } %>
 </div>
 <hr>
