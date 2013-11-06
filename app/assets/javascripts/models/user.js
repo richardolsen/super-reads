@@ -6,9 +6,8 @@ GooderReads.Models.User = Backbone.Model.extend({
     lastname: ""
   },
 
-  initialize: function(options) {
-    // this.set("fullname", options.firstname + " " + options.lastname);
-    this.set("fullname", this.get("firstname") + " " + this.get("lastname"));
+  fullname: function() {
+    return this.get("firstname") + " " + this.get("lastname");
   },
 
   friend: function() {
