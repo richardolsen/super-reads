@@ -10,47 +10,121 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="texts-read">
-    <table class="texts-list">
-      <thead>
-        <th>cover</th>
-        <th>title</th>
-        <th>author</th>
-        <th>shelf</th>
-        <th>data added</th>
-      </thead>
+    <div class="table-responsive">
+      <table class="table table-hover texts-list">
+        <thead>
+          <th>cover</th>
+          <th>title</th>
+          <th>author</th>
+          <th>shelf</th>
+          <th>data added</th>
+        </thead>
 
-      <% if(user.get("readTexts")) { %>
-        <% user.get("readTexts").forEach(function(text) { %>
-          <tr>
-            <td>
-              <a href="#/text/<%= text.get("id") %>">
-                <img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px">
-              </a>
-            </td>
-            <td>
-              <a href="#/text/<%= text.get("id") %>">
-                <%= text.get("title") %>
-              </a>
-            </td>
-            <td>
-              <% text.get("authors").forEach(function(author) { %>
-                <a href="#/author/<%= author.get("id") %>">
-                  <%= author.escape("name") %>
+        <% if(user.get("readTexts")) { %>
+          <% user.get("readTexts").forEach(function(text) { %>
+            <tr>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px">
                 </a>
-              <% }); %>
-            </td>
-            <td><%= text.get("state") %></td>
-            <td><%= text.dateAdded() %></td>
-          </tr>
-        <% }); %>
+              </td>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <%= text.get("title") %>
+                </a>
+              </td>
+              <td>
+                <% text.get("authors").forEach(function(author) { %>
+                  <a href="#/author/<%= author.get("id") %>">
+                    <%= author.escape("name") %>
+                  </a>
+                <% }); %>
+              </td>
+              <td><%= text.get("state") %></td>
+              <td><%= text.dateAdded() %></td>
+            </tr>
+          <% }); %>
+        <% } %>
       </table>
     </div>
-  <% } %>
+  </div>
 
   <div class="tab-pane" id="texts-queue">
-    queue
+    <div class="table-responsive">
+      <table class="table table-hover texts-list">
+        <thead>
+          <th>cover</th>
+          <th>title</th>
+          <th>author</th>
+          <th>shelf</th>
+          <th>data added</th>
+        </thead>
+
+        <% if(user.get("queueTexts")) { %>
+          <% user.get("queueTexts").forEach(function(text) { %>
+            <tr>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px">
+                </a>
+              </td>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <%= text.get("title") %>
+                </a>
+              </td>
+              <td>
+                <% text.get("authors").forEach(function(author) { %>
+                  <a href="#/author/<%= author.get("id") %>">
+                    <%= author.escape("name") %>
+                  </a>
+                <% }); %>
+              </td>
+              <td><%= text.get("state") %></td>
+              <td><%= text.dateAdded() %></td>
+            </tr>
+          <% }); %>
+        <% } %>
+      </table>
+    </div>
   </div>
   <div class="tab-pane" id="texts-current">
-    current
+    <div class="table-responsive">
+      <table class="table table-hover texts-list">
+        <thead>
+          <th>cover</th>
+          <th>title</th>
+          <th>author</th>
+          <th>shelf</th>
+          <th>data added</th>
+        </thead>
+
+        <% if(user.get("currentTexts")) { %>
+          <% user.get("currentTexts").forEach(function(text) { %>
+            <tr>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px">
+                </a>
+              </td>
+              <td>
+                <a href="#/text/<%= text.get("id") %>">
+                  <%= text.get("title") %>
+                </a>
+              </td>
+              <td>
+                <% text.get("authors").forEach(function(author) { %>
+                  <a href="#/author/<%= author.get("id") %>">
+                    <%= author.escape("name") %>
+                  </a>
+                <% }); %>
+              </td>
+              <td><%= text.get("state") %></td>
+              <td><%= text.dateAdded() %></td>
+            </tr>
+          <% }); %>
+        <% } %>
+      </table>
+    </div>
   </div>
 </div>

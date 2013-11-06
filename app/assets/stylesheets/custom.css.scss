@@ -104,13 +104,6 @@ p {
   margin-left:-30%; /* width/2) */
 }
 
-.login-box {
-  //border: thin solid #000000;
-  border-radius: 15px;
-  background-color: #EEEEEE;
-  @include box_sizing;
-}
-
 .login-element {
   padding: 5px;
   @include box_sizing;
@@ -121,24 +114,7 @@ p {
   border-radius: 15px;
 }
 
-.infoBoxRowTitle {
+.info-title {
   color:#382110;
   font-weight:bold;
-  width:25%;
-  float:left;
-  margin:1px 0px
-}
-.infoBoxRowItem{
-  float:left;
-  width:75%;
-  margin:1px 0px
-}
-
-br.clear, div.clear {
-  display: block;
-  clear: both;
-  height: 0;
-  margin: 0;
-  font-size: 1px;
-  line-height: 0
 }

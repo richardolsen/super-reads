@@ -1,44 +1,46 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <!-- <div class="container"> -->
+    <div class="span2 offset1">
       <a href="#/" id="logo">BiblioPile</a>
-      <nav>
-        <ul class="nav pull-right">
-          <% if(user) { %>
-            <li><a href="#/user/<%= user.get("id") %>/texts">My Books</a></li>
-          <% } %>
+    </div>
+    <nav>
+      <ul class="nav pull-right">
+        <% if(user) { %>
+          <li><a href="#/user/<%= user.get("id") %>/texts">My Books</a></li>
+        <% } %>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Explore
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#/texts">Books</a></li>
+            <li class="divider"></li>
+            <li><a href="">Friends</a></li>
+            <li><a href="#/users">Members</a></li>
+          </ul>
+        </li>
+        <li><a href="#/users">Members</a></li>
+        <% if(user) { %>
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Explore
+              <img src="/assets/users/<%= user.get("username") %>.jpg" width="25px" height="25px" class="img-thumbnail">
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#/texts">Books</a></li>
+              <li><a href="#/">Profile</a></li>
               <li class="divider"></li>
-              <li>community</li>
-              <li><a href="#/users">Members</a></li>
+              <li>
+                <a href="/session" data-method="delete" rel="nofollow">Sign out</a>
+              </li>
             </ul>
           </li>
-          <li><a href="#/users">Members</a></li>
-          <% if(user) { %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="/assets/users/<%= user.get("username") %>.jpg" width="25px" height="25px" class="img-thumbnail">
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#/">Profile</a></li>
-                <li class="divider"></li>
-                <li>
-                  <a href="/session" data-method="delete" rel="nofollow">Sign out</a>
-                </li>
-              </ul>
-            </li>
-          <% } else { %>
-            <li><a href="/session/new"</a></li>
-          <% } %>
-        </ul>
-      </nav>
+        <% } else { %>
+          <li><a href="/session/new"</a></li>
+        <% } %>
+      </ul>
+    </nav>
     <!-- </div> -->
   </div>
 </header>

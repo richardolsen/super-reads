@@ -1,17 +1,23 @@
-<h1><%= user.escape("fullname") %>'s Profile</h1>
+<h1><%= user.fullname() %>'s Profile</h1>
 
 <div class="span2">
   <img src="/assets/users/<%= user.get("username") %>.jpg" width="111" height="83">
 </div>
-<div class="span5 gray-box">
-  <div class="infoBoxRowTitle">details</div>
-  <div class="infoBoxRowItem">Age <%= user.age() %>, <%= user.escape("gender") %></div>
-  <br class="clear">
+<div>
+  <div class="span5 well">
+    <div class="row">
+      <div class="span2 info-title">details</div>
+      <div>Age <%= user.age() %>, <%= user.escape("gender") %></div>
+    </div>
 
-  <div class="infoBoxRowTitle">birthday</div>
-  <div class="infoBoxRowItem"><%= user.birthDate() %></div>
-  <br class="clear">
+    <div class="row">
+      <div class="span2 info-title">birthday</div>
+      <div><%= user.birthDate() %></div>
+    </div>
 
-  <div class="infoBoxRowTitle">activity</div>
-  <div class="infoBoxRowItem">Joined in <%= user.joinDate() %></div>
+    <div class="row">
+      <div class="span2 info-title">activity</div>
+      <div>Joined in <%= user.joinDate() %></div>
+    </div>
+  </div>
 </div>
