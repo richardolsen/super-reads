@@ -22,11 +22,19 @@
       <% if(user.get("readTexts")) { %>
         <% user.get("readTexts").forEach(function(text) { %>
           <tr>
-            <td><img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px"></td>
-            <td><%= text.get("title") %></td>
+            <td>
+              <a href="#/text/<%= text.get("id") %>">
+                <img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px">
+              </a>
+            </td>
+            <td>
+              <a href="#/text/<%= text.get("id") %>">
+                <%= text.get("title") %>
+              </a>
+            </td>
             <td>
               <% text.get("authors").forEach(function(author) { %>
-                <a href="#/author/<%= author.escape("id") %>">
+                <a href="#/author/<%= author.get("id") %>">
                   <%= author.escape("name") %>
                 </a>
               <% }); %>

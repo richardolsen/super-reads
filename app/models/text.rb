@@ -57,7 +57,7 @@ class Text < ActiveRecord::Base
     SQL
   end
 
-  def as_json()
+  def as_json(options = {})
     super(:include => :authors)
   end
 end

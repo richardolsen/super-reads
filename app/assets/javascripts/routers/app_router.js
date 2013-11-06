@@ -9,7 +9,8 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "users": "usersIndex",
     "user/:id": "userDetail",
     "user/:id/texts": "userTextsIndex",
-    "texts": "textsIndex"
+    "texts": "textsIndex",
+    "text/:id": "textDetail"
   },
 
   index: function() {
@@ -60,6 +61,10 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     });
 
     this._swapView(index.render().$el);
+  },
+
+  textDetail: function(id) {
+    ;
   },
 
   _swapView: function(newView) {
