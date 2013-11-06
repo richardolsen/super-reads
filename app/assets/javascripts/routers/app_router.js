@@ -5,7 +5,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
+    "/": "index",
     "users": "usersIndex",
     "user/:id": "userDetail",
     "user/:id/texts": "userTextsIndex",

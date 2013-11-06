@@ -48,25 +48,27 @@ GooderReads.Models.User = Backbone.Model.extend({
   },
 
   parse: function(attrs, options) {
-    var texts = attrs.texts;
-    delete attrs.texts;
+    if(attrs.texts) {
+      var texts = attrs.texts;
+      delete attrs.texts;
 
-    var readTexts = [];
-    var queueTexts = [];
-    var currentTexts = [];
-    texts.forEach(function(text) {
-      if(text.state === "read") {
-        readTexts.push(text);
-      } else if(text.state === "queue") {
-        queueTexts.push(text);
-      } else {
-        currentTexts.push(text);
-      }
-    });
+      var readTexts = [];
+      var queueTexts = [];
+      var currentTexts = [];
+      texts.forEach(function(text) {
+        if(text.state === "read") {
+          readTexts.push(text);
+        } else if(text.state === "queue") {
+          queueTexts.push(text);
+        } else {
+          currentTexts.push(text);
+        }
+      });
 
-    attrs.readTexts = new GooderReads.Collections.Texts(readTexts, { parse: true });
-    attrs.queueTexts = new GooderReads.Collections.Texts(queueTexts, { parse: true });
-    attrs.currentTexts = new GooderReads.Collections.Texts(currentTexts, { parse: true });
+      attrs.readTexts = new GooderReads.Collections.Texts(readTexts, { parse: true });
+      attrs.queueTexts = new GooderReads.Collections.Texts(queueTexts, { parse: true });
+      attrs.currentTexts = new GooderReads.Collections.Texts(currentTexts, { parse: true });
+    }
 
     return attrs;
   }

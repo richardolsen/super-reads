@@ -10,16 +10,14 @@ class UsersController < ApplicationController
   def index
     if(logged_in?)
       @users = User.where("id != ?", current_user.id)
-    else
-      @users = User.all
-    end
 
-    if(current_user)
       friends = User.where(:id => current_user.friends.pluck(:id)).pluck(:id);
 
       @users.each do |user|
         user.friended = friends.include?(user.id)
       end
+    else
+      @users = User.all
     end
 
     render :json => @users, :methods => :friended

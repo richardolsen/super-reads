@@ -20,5 +20,9 @@ GooderReads.Views.UsersIndexView = Backbone.View.extend({
     });
 
     return this;
+  },
+
+  remove: function() {
+    debugger
   }
 });

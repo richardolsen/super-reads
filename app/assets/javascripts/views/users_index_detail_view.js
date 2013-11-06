@@ -20,7 +20,7 @@ GooderReads.Views.UsersIndexDetailView = Backbone.View.extend({
   },
 
   modalEvent: function(event) {
-    $('.modal').modal('toggle');
+    $('#modal-' + this.model.get("id")).modal('toggle');
   },
 
   render: function() {

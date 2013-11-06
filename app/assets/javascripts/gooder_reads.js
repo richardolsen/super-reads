@@ -28,7 +28,7 @@ window.GooderReads = {
     $headerEl.html(header.$el);
   },
 
-  loggedIn: function() {
+  isLoggedIn: function() {
     return GooderReads.user != undefined;
   }
 };

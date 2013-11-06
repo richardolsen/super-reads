@@ -1,12 +1,12 @@
 <div>
-  <span class="user-detail"><%= user.escape("fullname") %></span>
+  <span class="user-detail"><%= user.fullname() %></span>
   <button type="button" class="friend-button btn btn-xs">
     <%= user.get("friended") ? "unfriend" : "friend" %>
   </button>
 </div>
 <hr>
 
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modal-<%= user.get("id") %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +14,7 @@
         <h4 class="modal-title" id="myModalLabel"><%= user.escape("fullname") %></h4>
       </div>
       <div class="modal-body">
-        ...
+        <%= user.fullname() %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
