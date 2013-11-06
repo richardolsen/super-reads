@@ -4,7 +4,10 @@
       <a href="#/" id="logo">BiblioPile</a>
       <nav>
         <ul class="nav pull-right">
-          <li><a href="#/texts">Books</a></li>
+          <% if(user) { %>
+            <li><a href="#/user/<%= user.get("id") %>/texts">My Books</a></li>
+          <% } %>
+          <li><a href="#/texts">Explore</a></li>
           <li><a href="#/users">Members</a></li>
           <% if(user) { %>
             <li id="fat-menu" class="dropdown">

@@ -1,0 +1,48 @@
+<h1>Books</h1>
+
+<ul class="nav nav-tabs" id="text-tabs">
+  <li class="active">
+    <a data-toggle="tab" id="read">Read</a>
+  </li>
+  <li><a data-toggle="tab" id="current">Currently Reading</a></li>
+  <li><a data-toggle="tab" id="queue">Want to Read</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="texts-read">
+    <table class="texts-list">
+      <thead>
+        <th>cover</th>
+        <th>title</th>
+        <th>author</th>
+        <th>shelf</th>
+        <th>data added</th>
+      </thead>
+
+      <% if(user.get("readTexts")) { %>
+        <% user.get("readTexts").forEach(function(text) { %>
+          <tr>
+            <td><img src="/assets/texts/<%= text.get("id") %>.jpg" width="50px" height="74px"></td>
+            <td><%= text.get("title") %></td>
+            <td>
+              <% text.get("authors").forEach(function(author) { %>
+                <a href="#/author/<%= author.escape("id") %>">
+                  <%= author.escape("name") %>
+                </a>
+              <% }); %>
+            </td>
+            <td><%= text.get("state") %></td>
+            <td><%= text.dateAdded() %></td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+  <% } %>
+
+  <div class="tab-pane" id="texts-queue">
+    queue
+  </div>
+  <div class="tab-pane" id="texts-current">
+    current
+  </div>
+</div>

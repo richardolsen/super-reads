@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
     texts = Text.find_by_sql([<<-SQL, self.id])
         SELECT
           texts.*,
-          text_states.state
+          text_states.state AS state
         FROM
           texts
         INNER JOIN
@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
         WHERE
           text_states.user_id = ?
       SQL
+    # texts = Text
+    #   .includes(:authors)
+    #   .joins("INNER JOIN text_states ON (texts.id = text_states.text_id)")
+    #   .where("text_states.user_id = #{self.id}")
   end
 
 

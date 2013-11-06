@@ -32,7 +32,8 @@ class Text < ActiveRecord::Base
   has_many :comments, :as => :commentable
 
 
-  def self.find_texts_for_user(user_id)
+  # get all the texts, with those of the user set with `state`
+  def self.find_all_texts_for_user(user_id)
     Text.find_by_sql([<<-SQL, user_id])
       SELECT
         texts.*,
@@ -40,9 +41,23 @@ class Text < ActiveRecord::Base
       FROM
         texts
       LEFT OUTER JOIN
-        text_states ON (texts.id = text_states.text_id)
-      WHERE
-        text_states.user_id = ?
+        text_states ON (texts.id = text_states.text_id AND text_states.user_id = ?)
     SQL
+  end
+
+  def self.find_texts_for_user(user_id)
+    Text.find_by_sql([<<-SQL, user_id])
+      SELECT
+        texts.*,
+        text_states.state AS state
+      FROM
+        texts
+      INNER JOIN
+        text_states ON (texts.id = text_states.text_id AND text_states.user_id = ?)
+    SQL
+  end
+
+  def as_json()
+    super(:include => :authors)
   end
 end

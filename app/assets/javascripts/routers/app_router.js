@@ -8,6 +8,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "": "index",
     "users": "usersIndex",
     "user/:id": "userDetail",
+    "user/:id/texts": "userTextsIndex",
     "texts": "textsIndex"
   },
 
@@ -32,6 +33,22 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
 
   userDetail: function(id) {
 
+  },
+
+  userTextsIndex: function(id) {
+    var user = new GooderReads.Models.User({ id: id });
+    user.fetch();
+
+    // var texts = new GooderReads.Collections.UserTexts([], {
+    //   user_id: id
+    // });
+    // texts.fetch();
+
+    var index = new GooderReads.Views.UserTextsIndexView({
+      model: user
+    });
+
+    this._swapView(index.render().$el);
   },
 
   textsIndex: function() {

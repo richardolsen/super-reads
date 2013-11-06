@@ -1,6 +1,5 @@
 GooderReads.Models.Text = Backbone.Model.extend({
   initialize: function(options) {
-    ;
   },
 
   stateString: function() {
@@ -14,5 +13,10 @@ GooderReads.Models.Text = Backbone.Model.extend({
     }
 
     return "Want to read";
+  },
+
+  dateAdded: function() {
+    var dateCreated = new Date(this.get("created_at"));
+    return moment(dateCreated).format('MMM D, YYYY')
   }
 });
