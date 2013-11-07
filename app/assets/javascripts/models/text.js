@@ -1,6 +1,5 @@
 GooderReads.Models.Text = Backbone.Model.extend({
-  initialize: function(options) {
-  },
+  urlRoot: "/texts",
 
   stateString: function() {
     var state = this.get("state");

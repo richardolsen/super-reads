@@ -42,10 +42,21 @@ michael_chabon = Author.create!(name: "Michael Chabon",
 Michael Chabon (b. 1963) is an acclaimed and bestselling author whose works include the Pulitzer Prize–winning novel The Amazing Adventures of Kavalier & Clay (2000). Chabon achieved literary fame at age twenty-four with his first novel, The Mysteries of Pittsburgh (1988), which was a major critical and commercial success. He then published Wonder Boys (1995), another bestseller, which was made into a film starring Michael Douglas. One of America’s most distinctive voices, Chabon has been called “a magical prose stylist” by the New York Times Book Review, and is known for his lively writing, nostalgia for bygone modes of storytelling, and deep empathy for the human predicament.
 BIO
 
+orhan_pamuk = Author.create!(name: "Orhan Pamuk",
+                             birthday: "June 07, 1952",
+                             gender: "male",
+                             website: "http://www.orhanpamuk.net/",
+                             bio: <<-BIO)
+Ferit Orhan Pamuk is a Nobel Prize-winning Turkish novelist. Pamuk is often regarded as a post-modern writer. As one of Turkey's most prominent novelists, his work has been translated into more than forty languages. He is the recipient of numerous national and international literary awards. He was the first Turkish person awarded the Nobel Prize in Literature on October 12, 2006, commended for being an author "who in the quest for the melancholic soul of his native city has discovered new symbols for the clash and interlacing of cultures."
+BIO
+
+erdag_goknar = Author.create!(name: "Erdağ M. Göknar")
+
 
 # publishers
 miramax = Publisher.create!(name: "Miramax Books", city: "New York")
 picador = Publisher.create!(name: "Picador", city: "New York")
+vintage = Publisher.create!(name: "Vintage", city: "New York")
 
 
 # texts
@@ -66,3 +77,24 @@ kavalier_and_clay = Text.create!(title: "The Amazing Adventures of Kavalier & Cl
 Joe Kavalier, a young Jewish artist who has also been trained in the art of Houdini-esque escape, has just smuggled himself out of Nazi-invaded Prague and landed in New York City. His Brooklyn cousin Sammy Clay is looking for a partner to create heroes, stories, and art for the latest novelty to hit America - the comic book. Drawing on their own fears and dreams, Kavalier and Clay create the Escapist, the Monitor, and Luna Moth, inspired by the beautiful Rosa Saks, who will become linked by powerful ties to both men. With exhilarating style and grace, Michael Chabon tells an unforgettable story about American romance and possibility.
 DESCRIPTION
 michael_chabon.texts << kavalier_and_clay
+
+my_name_is_red = Text.create!(title: "My Name is Red",
+                              publisher_id: vintage.id,
+                              published_date: "August 27th 2002",
+                              description: <<-DESCRIPTION)
+At once a fiendishly devious mystery, a beguiling love story, and a brilliant symposium on the power of art, My Name Is Red is a transporting tale set amid the splendor and religious intrigue of sixteenth-century Istanbul, from one of the most prominent contemporary Turkish writers.
+
+The Sultan has commissioned a cadre of the most acclaimed artists in the land to create a great book celebrating the glories of his realm. Their task: to illuminate the work in the European style. But because figurative art can be deemed an affront to Islam, this commission is a dangerous proposition indeed. The ruling elite therefore mustn’t know the full scope or nature of the project, and panic erupts when one of the chosen miniaturists disappears. The only clue to the mystery–or crime? –lies in the half-finished illuminations themselves. Part fantasy and part philosophical puzzle, My Name is Red is a kaleidoscopic journey to the intersection of art, religion, love, sex and power.
+
+Translated from the Turkish by Erda M Göknar
+DESCRIPTION
+orhan_pamuk.texts << my_name_is_red
+erdag_goknar.texts << my_name_is_red
+
+snow = Text.create!(title: "Snow",
+                    publisher_id: vintage.id,
+                    published_date: "August 2005",
+                    description: <<-DESCRIPTION)
+Dread, yearning, identity, intrigue, the lethal chemistry between secular doubt and Islamic fanaticism–these are the elements that Orhan Pamuk anneals in this masterful, disquieting novel. An exiled poet named Ka returns to Turkey and travels to the forlorn city of Kars. His ostensible purpose is to report on a wave of suicides among religious girls forbidden to wear their head-scarves. But Ka is also drawn by his memories of the radiant Ipek, now recently divorced. Amid blanketing snowfall and universal suspicion, Ka finds himself pursued by figures ranging from Ipek’s ex-husband to a charismatic terrorist. A lost gift returns with ecstatic suddenness. A theatrical evening climaxes in a massacre. And finding god may be the prelude to losing everything else. Touching, slyly comic, and humming with cerebral suspense, Snow is of immense relevance to our present moment.
+DESCRIPTION
+orhan_pamuk.texts << snow
