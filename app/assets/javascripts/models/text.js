@@ -7,7 +7,9 @@ GooderReads.Models.Text = Backbone.Model.extend({
       if(state === "read") {
         return "Read";
       } else if (state === "current") {
-        return "Currently reading";
+        return "Currently Reading";
+      } else {
+        return "Want to Read"
       }
     }
 

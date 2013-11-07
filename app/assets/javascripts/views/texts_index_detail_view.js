@@ -13,6 +13,10 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
 
     this.$el.html(content);
 
+    var $ratingEl = this.$el.find("#rating-" + this.model.get("id"));
+    var ratingView = new GooderReads.Views.RatingFormView();
+    $ratingEl.html(ratingView.render().$el);
+debugger
     return this;
   },
 
@@ -33,6 +37,10 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   },
 
   createNewState: function(state) {
+    if(state === "read") {
+      this.requestReview();
+    }
+
     var that = this;
     $.ajax({
       url: "/texts/" + this.model.get("id") + "/text_states",
@@ -50,6 +58,10 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   },
 
   changeState: function(state) {
+    if(state === "read") {
+      this.requestReview();
+    }
+
     var that = this;
     $.ajax({
       url: "/texts/" + this.model.get("id") + "/text_states/1",
@@ -64,5 +76,15 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
         ;
       }
     });
+  },
+
+  requestReview: function() {
+    var reviewView = new GooderReads.Views.ReviewFormView({
+      text: this.model
+    });
+
+    var $modalEl = $("#review-modal");
+    $modalEl.html(reviewView.render().$el);
+    reviewView.toggleModal();
   }
 });
