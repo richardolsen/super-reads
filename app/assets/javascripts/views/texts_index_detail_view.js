@@ -14,9 +14,11 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
     this.$el.html(content);
 
     var $ratingEl = this.$el.find("#rating-" + this.model.get("id"));
-    var ratingView = new GooderReads.Views.RatingFormView();
+    var ratingView = new GooderReads.Views.RatingFormView({
+      model: this.model
+    });
     $ratingEl.html(ratingView.render().$el);
-debugger
+
     return this;
   },
 

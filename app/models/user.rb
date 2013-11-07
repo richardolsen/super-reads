@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
     :through => :friendings,
     :source => :friend
 
+  has_many :ratings,
+    :class_name => "Rating",
+    :primary_key => :id,
+    :foreign_key => :user_id
+
   has_many :reviews,
     :class_name => "Review",
     :primary_key => :id,

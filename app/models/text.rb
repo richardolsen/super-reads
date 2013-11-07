@@ -24,6 +24,11 @@ class Text < ActiveRecord::Base
     :primary_key => :id,
     :foreign_key => :publisher_id
 
+  has_many :ratings,
+    :class_name => "Rating",
+    :primary_key => :id,
+    :foreign_key => :text_id
+
   has_many :reviews,
     :class_name => "Review",
     :primary_key => :id,
@@ -34,14 +39,17 @@ class Text < ActiveRecord::Base
 
   # get all the texts, with those of the user set with `state`
   def self.find_all_texts_for_user(user_id)
-    Text.find_by_sql([<<-SQL, user_id])
+    Text.find_by_sql([<<-SQL, user_id, user_id])
       SELECT
         texts.*,
-        text_states.state AS state
+        text_states.state AS state,
+        ratings.rating AS user_rating
       FROM
         texts
       LEFT OUTER JOIN
         text_states ON (texts.id = text_states.text_id AND text_states.user_id = ?)
+      LEFT OUTER JOIN
+        ratings ON (texts.id = ratings.text_id AND ratings.user_id = ?)
     SQL
   end
 
@@ -57,7 +65,21 @@ class Text < ActiveRecord::Base
     SQL
   end
 
+
   def as_json(options = {})
-    super(:include => :authors)
+    super(:include => :authors, :methods => [:average_rating, :rated?])
+  end
+
+  def rated?
+    self.ratings.count > 0
+  end
+
+  def average_rating
+    ratings = self.ratings.pluck(:rating)
+    if ratings.length > 0
+      ratings.inject(0, :+) / ratings.length
+    else
+      0
+    end
   end
 end
