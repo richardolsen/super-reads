@@ -13,5 +13,17 @@ GooderReads.Views.TextDetailView = Backbone.View.extend({
     this.$el.html(content);
 
     return this;
+  },
+
+  events: {
+    "click #text-description-more": "switchDescription",
+    "click #text-description-less": "switchDescription"
+  },
+
+  switchDescription: function(event) {
+    event.preventDefault();
+
+    $("#text-description-long").toggleClass("hide");
+    $("#text-description-short").toggleClass("hide");
   }
 });

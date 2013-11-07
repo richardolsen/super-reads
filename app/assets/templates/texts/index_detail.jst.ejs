@@ -1,12 +1,14 @@
 
 <div class="row well">
-  <div class="span3">
-    <img src="/assets/texts/<%= text.get("id") %>.jpg">
+  <div class="span2">
+    <a href="#/text/<%= text.get("id") %>">
+      <img src="/assets/texts/<%= text.get("id") %>.jpg" width="60px">
+    </a>
   </div>
   <div class="span7">
     <div class="row">
       <div class="span11 text-detail">
-        <a href="">
+        <a href="#/text/<%= text.get("id") %>">
           <%= text.escape("title") %>
         </a>
       </div>
@@ -14,10 +16,12 @@
     <div class="row">
       <div class="span7">
         Author:
-        <% text.get("authors").forEach(function(author) { %>
-          <a href="#/author/<%= author.escape("id") %>">
-            <%= author.escape("name") %>
-          </a>
+        <% var i = 1; authorList = text.authorList(); %>
+        <% authorList.forEach(function(author) { %>
+          <a href="#/author/<%= author.id %>">
+            <span><%= author.name %></span>
+          </a><%= (i < authorList.length ? ", " : "") %>
+          <% i++; %>
         <% }); %>
       </div>
     </div>

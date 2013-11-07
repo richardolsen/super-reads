@@ -2,7 +2,7 @@ GooderReads.Views.TextsIndexView = Backbone.View.extend({
   template: JST["texts/index"],
 
   initialize: function(options) {
-    this.listenTo(this.collection, "sync add remove", this.render);
+    this.listenTo(this.collection, "sync", this.render);
   },
 
   render: function() {

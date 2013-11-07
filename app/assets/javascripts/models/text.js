@@ -17,5 +17,52 @@ GooderReads.Models.Text = Backbone.Model.extend({
   dateAdded: function() {
     var dateCreated = new Date(this.get("created_at"));
     return moment(dateCreated).format('MMM D, YYYY')
+  },
+
+  authorList: function() {
+    var list = []
+
+    if(this.get("authors")) {
+      this.get("authors").forEach(function(author) {
+        list.push({
+          id: author.get("id"),
+          name: author.get("name")
+        });
+      });
+    }
+
+    return list;
+  },
+
+  isDescriptionLong: function() {
+    if(this.get("description")) {
+      return this.get("description").length > 200;
+    } else {
+      return "";
+    }
+  },
+
+  shortDescription: function() {
+    if(this.get("description")) {
+      return this.get("description").slice(0, 200);
+    } else {
+      return "";
+    }
+  },
+
+  fullDescription: function() {
+    if(this.get("description")) {
+      return this.get("description");
+    } else {
+      return "";
+    }
+  },
+
+  parse: function(attrs, options) {
+    var authors = attrs.authors;
+
+    attrs.authors = new GooderReads.Collections.Authors(authors, { parse: true });
+
+    return attrs;
   }
 });

@@ -68,7 +68,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   textDetail: function(id) {
-    var text = new GooderReads.Models.Text({ id: id});
+    var text = new GooderReads.Models.Text({ id: id });
     text.fetch();
 
     var show = new GooderReads.Views.TextDetailView({
