@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="span2">
+    <img src="/assets/users/<%= user.get("username") %>.jpg" width="111" height="83">
+  </div>
+  <div>
+    <div class="span5 well">
+      <div class="row">
+        <div class="span2 info-title">details</div>
+        <div>Age <%= user.age() %>, <%= user.escape("gender") %></div>
+      </div>
+
+      <div class="row">
+        <div class="span2 info-title">birthday</div>
+        <div><%= user.birthDate() %></div>
+      </div>
+
+      <div class="row">
+        <div class="span2 info-title">activity</div>
+        <div>Joined in <%= user.joinDate() %></div>
+      </div>
+    </div>
+  </div>
+</div>

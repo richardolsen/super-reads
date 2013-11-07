@@ -12,7 +12,7 @@ GooderReads.Models.Text = Backbone.Model.extend({
       }
     }
 
-    return "Want to read";
+    return "Add to Shelf";
   },
 
   dateAdded: function() {

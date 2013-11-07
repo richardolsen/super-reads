@@ -5,7 +5,7 @@ window.GooderReads = {
   Routers: {},
   initialize: function() {
     if(GooderReads.userData) {
-      GooderReads.user = new GooderReads.Models.User(GooderReads.userData);
+      GooderReads.user = new GooderReads.Models.User(GooderReads.userData, { parse: true });
 
       this.installHeader($(".header"), GooderReads.user);
 

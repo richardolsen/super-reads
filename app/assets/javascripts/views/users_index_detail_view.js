@@ -10,7 +10,8 @@ GooderReads.Views.UsersIndexDetailView = Backbone.View.extend({
 
   events: {
     "click .friend-button": "friendEvent",
-    "click .user-detail": "modalEvent"
+    "click .user-detail": "modalEvent",
+    "click .user-profile": "closeModalEvent"
   },
 
   friendEvent: function(event) {
@@ -20,6 +21,10 @@ GooderReads.Views.UsersIndexDetailView = Backbone.View.extend({
   },
 
   modalEvent: function(event) {
+    $('#modal-' + this.model.get("id")).modal('toggle');
+  },
+
+  closeModalEvent: function(event) {
     $('#modal-' + this.model.get("id")).modal('toggle');
   },
 

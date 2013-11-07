@@ -4,23 +4,23 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render :json => user, :methods => :texts
+    render :json => user, :methods => [:texts, :friended]
   end
 
   def index
     if(logged_in?)
-      @users = User.where("id != ?", current_user.id)
+      users = User.where("id != ?", current_user.id)
 
       friends = User.where(:id => current_user.friends.pluck(:id)).pluck(:id);
 
-      @users.each do |user|
+      users.each do |user|
         user.friended = friends.include?(user.id)
       end
     else
-      @users = User.all
+      users = User.all
     end
 
-    render :json => @users, :methods => :friended
+    render :json => users, :methods => :friended
   end
 
   def friend
