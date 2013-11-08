@@ -41,8 +41,7 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
   },
 
   resetRating: function() {
-    var rating = this.model.get("user_rating");
-    if(!rating) rating = 0;
+    var rating = this.model.get("user_rating") || 0;
 
     this.setRating(rating);
   },

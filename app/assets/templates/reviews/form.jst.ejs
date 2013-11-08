@@ -9,21 +9,21 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="span2">
+          <div class="span1">
             <a href="#/text/<%= text.get("id") %>">
               <img src="/assets/texts/<%= text.get("id") %>.jpg" width="60px">
             </a>
           </div>
-          <div class="span7">
+          <div class="span5 well">
             <div class="row">
-              <div class="span6 text-detail">
+              <div class="span5 text-detail">
                 <a href="#/text/<%= text.get("id") %>">
                   <%= text.escape("title") %>
                 </a>
               </div>
             </div>
             <div class="row">
-              <div class="span6">
+              <div class="span5">
                 Author:
                 <% var i = 1; authorList = text.authorList(); %>
                 <% authorList.forEach(function(author) { %>
@@ -35,7 +35,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="span6">
+              <div class="span5">
                 <% if(text.get("rated?")) { %>
                   Avg. Rating: <%= text.get("average_rating") %>
                 <% } else { %>
@@ -43,6 +43,14 @@
                 <% } %>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span1">
+            Rating:
+          </div>
+          <div class="span4" id="rating-<%= text.get("id") %>">
+
           </div>
         </div>
       </div>

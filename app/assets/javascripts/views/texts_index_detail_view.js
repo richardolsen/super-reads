@@ -11,6 +11,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
       user: this.user
     });
 
+    // this sometimes breaks the modal (but sometimes not)
     this.$el.html(content);
 
     var $ratingEl = this.$el.find("#rating-" + this.model.get("id"));
@@ -60,10 +61,6 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   },
 
   changeState: function(state) {
-    if(state === "read") {
-      this.requestReview();
-    }
-
     var that = this;
     $.ajax({
       url: "/texts/" + this.model.get("id") + "/text_states/1",
@@ -73,6 +70,9 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
       },
       success: function(data) {
         that.model.set("state", state);
+        if(state === "read") {
+          that.requestReview();
+        }
       },
       error: function(data, response) {
         ;
