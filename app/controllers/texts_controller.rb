@@ -1,7 +1,7 @@
 class TextsController < ApplicationController
   def show
-    text = Text.includes(:authors).find(params[:id])
-    render :json => text, :include => :authors
+    text = Text.includes(:authors).includes(:reviews).find(params[:id])
+    render :json => text, :include => [:authors, :reviews]
   end
 
   def index
