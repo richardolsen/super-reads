@@ -57,6 +57,7 @@ erdag_goknar = Author.create!(name: "Erdağ M. Göknar")
 miramax = Publisher.create!(name: "Miramax Books", city: "New York")
 picador = Publisher.create!(name: "Picador", city: "New York")
 vintage = Publisher.create!(name: "Vintage", city: "New York")
+new_directions = Publisher.create!(name: "New Directions", city: "New York")
 
 
 # texts
@@ -98,3 +99,13 @@ snow = Text.create!(title: "Snow",
 Dread, yearning, identity, intrigue, the lethal chemistry between secular doubt and Islamic fanaticism–these are the elements that Orhan Pamuk anneals in this masterful, disquieting novel. An exiled poet named Ka returns to Turkey and travels to the forlorn city of Kars. His ostensible purpose is to report on a wave of suicides among religious girls forbidden to wear their head-scarves. But Ka is also drawn by his memories of the radiant Ipek, now recently divorced. Amid blanketing snowfall and universal suspicion, Ka finds himself pursued by figures ranging from Ipek’s ex-husband to a charismatic terrorist. A lost gift returns with ecstatic suddenness. A theatrical evening climaxes in a massacre. And finding god may be the prelude to losing everything else. Touching, slyly comic, and humming with cerebral suspense, Snow is of immense relevance to our present moment.
 DESCRIPTION
 orhan_pamuk.texts << snow
+
+lightning_rods = Text.create!(title: "Lightning Rods",
+                              publisher_id: new_directions.id,
+                              published_date: "October 5th 2011",
+                              description: <<-DESCRIPTION)
+“All I want is to be a success. That’s all I ask.” Joe fails to sell a single set of the Encyclopedia Britannica in six months. Then fails to sell a single Electrolux and must eat 126 pieces of homemade pie, served up by his would-be customers who feel sorry for him. Holed up in his trailer, Joe finds an outlet for his frustrations in a series of ingenious sexual fantasies, and at last strikes gold. His brainstorm, Lightning Rods, Inc., will take Joe to the very top — and to the very heart of corporate insanity — with an outrageous solution to the spectre of sexual harassment in the modern office.
+
+An uproarious, hard-boiled modern fable of corporate life, sex, and race in America, Helen DeWitt’s Lightning Rods brims with the satiric energy of Nathanael West and the philosophic import of an Aristophanic comedy of ideas. Her wild yarn is second cousin to the spirit of Mel Brooks and the hilarious reality-blurring of Being John Malkovich. Dewitt continues to take the novel into new realms of storytelling — as the timeliness of Lightning Rods crosses over into timelessness.
+DESCRIPTION
+helen_dewitt.texts << lightning_rods
