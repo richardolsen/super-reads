@@ -9,6 +9,8 @@ GooderReads::Application.routes.draw do
   resources :texts, :only => [:show, :index] do
     resources :comments, :only => [:show, :index, :create]
     resources :text_states, :only => [:create, :update]
+
+    post :rate, :on => :member
   end
   resources :authors, :only => [:show, :index]
   resources :genres, :only => [:show, :index]

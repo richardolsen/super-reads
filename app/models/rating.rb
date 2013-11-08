@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  attr_accessible :rating
+  attr_accessible :text_id, :rating # always create using the current user
 
   before_validation :temper_rating
 
@@ -19,6 +19,16 @@ class Rating < ActiveRecord::Base
       self.rating = 5
     elsif self.rating < 1
       self.rating = 1
+    end
+  end
+
+  def average_rating
+    ratings = Rating.where(:text_id => self.text_id).pluck(:rating)
+
+    if ratings.length > 0
+      ratings.inject(0, :+) / ratings.length
+    else
+      0
     end
   end
 end
