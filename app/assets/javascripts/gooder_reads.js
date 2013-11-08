@@ -16,6 +16,12 @@ window.GooderReads = {
       GooderReads.user = undefined;
       this.installHeader($(".header"), null);
     }
+
+    // dismiss any errors
+    $(window).on("click", function(event) {
+      var $div = $(".status-alerts");
+      $div.empty();
+    });
   },
 
   installHeader: function($headerEl, user) {
@@ -30,6 +36,19 @@ window.GooderReads = {
 
   isLoggedIn: function() {
     return GooderReads.user != undefined;
+  },
+
+  logErrors: function(errors) {
+    // loop through errors and do it.
+    var $div = $(".status-alerts");
+    errors.forEach(function(error) {
+      $div.append("<div class=\"alert alert-danger\">" + error + "</div>")
+    });
+  },
+
+  logSuccess: function(string) {
+    var $div = $(".status-alerts");
+    $div.append("<div class=\"alert alert-success\">" + string + "</div>")
   }
 };
 
