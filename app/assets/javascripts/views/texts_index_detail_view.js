@@ -81,12 +81,26 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   },
 
   requestReview: function() {
-    var reviewView = new GooderReads.Views.ReviewFormView({
-      model: this.model
-    });
+    var that = this;
 
-    var $modalEl = $("#review-modal");
-    $modalEl.html(reviewView.render().$el);
-    reviewView.toggleModal();
+    var review = new GooderReads.Models.Review({
+      id: -1,
+      text_id: this.model.get("id")
+    });
+    review.fetch({
+      success: function(data) {
+        var reviewView = new GooderReads.Views.ReviewFormView({
+          text: that.model,
+          model: data
+        });
+
+        var $modalEl = $("#review-modal");
+        $modalEl.html(reviewView.render().$el);
+        reviewView.toggleModal();
+      },
+      error: function() {
+        debugger
+      }
+    });
   }
 });
