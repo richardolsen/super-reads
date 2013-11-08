@@ -3,12 +3,8 @@
 ####Table of Contents
 
 1. [Introduction](#readers)
-2. [Users - getting started](#getting-started-as-a-user)
-    * [Scenario Selcetion](#selecting-a-scenario)
-    * [Configuring Globals](#configuring-globals)
-    * [Scenarios](#scenarios)
-    * [User Data](#user-data)
-    * [Role Mappings](#role-mappings)
+2. [Server-side](#server-side)
+3. [Client-side](#client-side)
 
 
 ## Readers
