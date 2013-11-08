@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107185301) do
+ActiveRecord::Schema.define(:version => 20131108225034) do
 
   create_table "author_genres", :force => true do |t|
     t.integer  "author_id",  :null => false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20131107185301) do
   end
 
   add_index "reviews", ["text_id"], :name => "index_reviews_on_text_id"
+  add_index "reviews", ["user_id", "text_id"], :name => "index_reviews_on_user_id_and_text_id", :unique => true
   add_index "reviews", ["user_id"], :name => "index_reviews_on_user_id"
 
   create_table "text_authors", :force => true do |t|

@@ -1,6 +1,8 @@
 class Review < ActiveRecord::Base
   attr_accessible :title, :body
 
+  validates :user_id, :uniqueness => { :scope => :text_id }
+
   belongs_to :user,
     :class_name => "User",
     :primary_key => :id,
