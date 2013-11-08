@@ -66,7 +66,7 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
         that.model.set("average_rating", data.average_rating);
       },
       error: function(data, response) {
-        debugger
+        GooderReads.logErrors(["Unable to save rating"]);
       }
     })
   },

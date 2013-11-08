@@ -46,9 +46,10 @@ GooderReads.Views.ReviewFormView = Backbone.View.extend({
     review.save({}, {
       success: function(data) {
         that.toggleModal();
+        GooderReads.logSuccess("Review saved");
       },
       error: function(data, response) {
-        debugger
+        GooderReads.logErrors("Unable to save review")
       }
     });
   }
