@@ -82,7 +82,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
 
   requestReview: function() {
     var reviewView = new GooderReads.Views.ReviewFormView({
-      text: this.model
+      model: this.model
     });
 
     var $modalEl = $("#review-modal");

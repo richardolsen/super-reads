@@ -43,11 +43,12 @@
       <div class="row">
         <div class="span4">
           <div class="dropdown">
+          <div class="dropdown">
             <button class="btn dropdown-toggle sr-only" type="button" id="dropdown-menu-<%= text.get("id") %>" data-toggle="dropdown">
               <%= text.stateString() %>
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
               <li>
                 <a href="#" data-state="queue">Want to read</a>
               </li>
