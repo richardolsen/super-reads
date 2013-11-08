@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  attr_accessible :rating
+  attr_accessible :text_id, :rating # always create using the current user
 
   before_validation :temper_rating
 

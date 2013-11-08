@@ -16,4 +16,21 @@ class TextsController < ApplicationController
 
     render :json => texts, :include => :authors
   end
+
+  def rate
+    rating_obj = Rating.find_by_user_id_and_text_id(current_user.id, params[:id])
+    rating_obj ||= current_user.ratings.build(text_id: params[:id])
+
+    rating = params[:rating]
+
+    if rating_obj.rating != rating
+      rating_obj.rating = rating
+
+      if rating_obj.save
+        render :json => rating_obj
+      else
+        render :json => rating_obj.errors
+      end
+    end
+  end
 end

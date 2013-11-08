@@ -2,6 +2,10 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
   template: JST["ratings/form"],
   className: "rating",
 
+  initialize: function(options) {
+    this.listenTo(this.model, "change", this.render);
+  },
+
   render: function() {
     var content = this.template({
       text: this.model
@@ -24,7 +28,10 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
 
     var rating = parseInt($(event.target).attr("data-id"));
 
-    debugger
+    var user_rating = this.model.get("user_rating");
+    if(!user_rating || rating != user_rating) {
+      this.sendRating(rating);
+    }
   },
 
   accordionRating: function(event) {
@@ -45,5 +52,22 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
       var $star = this.$el.find("#star-" + this.model.get("id") + "-" + i);
       $star.html(i > rating ? "☆" : "★")
     }
-  }
+  },
+
+  sendRating: function(rating) {
+    var that = this;
+    $.ajax({
+      url: "/texts/" + this.model.get("id") + "/rate",
+      type: "post",
+      data: {
+        rating: rating
+      },
+      success: function(data) {
+        that.model.set("user_rating", data.rating);
+      },
+      error: function(data, response) {
+        debugger
+      }
+    })
+  },
 });
