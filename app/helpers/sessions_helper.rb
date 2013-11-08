@@ -20,7 +20,6 @@ module SessionsHelper
   end
 
   def require_current_user!
-    puts "WE'RE TESTING FOR A CURRENT USER: #{session[:session_token]}"
     redirect_to new_session_url if current_user.nil?
   end
 

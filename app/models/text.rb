@@ -37,7 +37,7 @@ class Text < ActiveRecord::Base
   has_many :comments, :as => :commentable
 
 
-  # get all the texts, with those of the user set with `state`
+  # get all the texts, with those of the user set with `state` and `rating`
   def self.find_all_texts_for_user(user_id)
     Text.find_by_sql([<<-SQL, user_id, user_id])
       SELECT
@@ -53,15 +53,19 @@ class Text < ActiveRecord::Base
     SQL
   end
 
+  # just the texts that the user has marked as read, etc.
   def self.find_texts_for_user(user_id)
-    Text.find_by_sql([<<-SQL, user_id])
+    Text.find_by_sql([<<-SQL, user_id, user_id])
       SELECT
         texts.*,
-        text_states.state AS state
+        text_states.state AS state,
+        ratings.rating AS user_rating
       FROM
         texts
       INNER JOIN
         text_states ON (texts.id = text_states.text_id AND text_states.user_id = ?)
+      LEFT OUTER JOIN
+        ratings ON (texts.id = ratings.text_id AND ratings.user_id = ?)
     SQL
   end
 
