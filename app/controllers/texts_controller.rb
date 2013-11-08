@@ -27,7 +27,7 @@ class TextsController < ApplicationController
       rating_obj.rating = rating
 
       if rating_obj.save
-        render :json => rating_obj
+        render :json => rating_obj, :methods => :average_rating
       else
         render :json => rating_obj.errors
       end

@@ -21,4 +21,14 @@ class Rating < ActiveRecord::Base
       self.rating = 1
     end
   end
+
+  def average_rating
+    ratings = Rating.where(:text_id => self.text_id).pluck(:rating)
+
+    if ratings.length > 0
+      ratings.inject(0, :+) / ratings.length
+    else
+      0
+    end
+  end
 end

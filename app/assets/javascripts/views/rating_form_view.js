@@ -64,6 +64,7 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
       },
       success: function(data) {
         that.model.set("user_rating", data.rating);
+        that.model.set("average_rating", data.average_rating);
       },
       error: function(data, response) {
         debugger
