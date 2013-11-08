@@ -2,7 +2,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   template: JST["texts/index_detail"],
 
   initialize: function(options) {
-    this.listenTo(this.model, "change", this.render);
+    this.listenTo(this.model, "change:state", this.render);
   },
 
   render: function() {
