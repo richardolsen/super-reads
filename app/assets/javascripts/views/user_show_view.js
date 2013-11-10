@@ -1,7 +1,7 @@
 GooderReads.Views.UserShowView = Backbone.View.extend({
   template: JST["users/show"],
 
-  initialize: function() {
+  initialize: function(options) {
     this.listenTo(this.model, "change", this.render);
   },
 

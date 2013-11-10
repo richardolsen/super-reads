@@ -1,7 +1,12 @@
 class TextsController < ApplicationController
   def show
     text = Text.includes(:authors).includes(:reviews).find(params[:id])
-    render :json => text, :include => [:authors, :reviews]
+    rating = get_rating(text.id)
+
+    render :json => {
+      :text => text,
+      :user_rating => rating
+    }
   end
 
   def index
@@ -14,7 +19,7 @@ class TextsController < ApplicationController
       texts = Text.includes(:authors).all
     end
 
-    render :json => texts, :include => :authors
+    render :json => texts
   end
 
   def rate
@@ -33,4 +38,15 @@ class TextsController < ApplicationController
       end
     end
   end
+
+
+  private
+    def get_rating(text_id)
+      if logged_in?
+        rating_obj = Rating.find_by_user_id_and_text_id(current_user.id, text_id)
+        rating = (rating ? rating_obj.rating : 0)
+      else
+        rating = 0
+      end
+    end
 end

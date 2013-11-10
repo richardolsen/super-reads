@@ -61,10 +61,23 @@ GooderReads.Models.Text = Backbone.Model.extend({
   },
 
   parse: function(attrs, options) {
-    var authors = attrs.authors;
+    var text = attrs.text
+    if(text) {
+      text.user_rating = attrs.user_rating;
+    } else {
+      text = attrs
+    }
 
-    attrs.authors = new GooderReads.Collections.Authors(authors, { parse: true });
+    var authors = text.authors;
+    if(authors) {
+      text.authors = new GooderReads.Collections.Authors(authors, { parse: true });
+    }
 
-    return attrs;
+    var reviews = text.reviews;
+    if(reviews) {
+      text.reviews = new GooderReads.Collections.Reviews(reviews);
+    }
+
+    return text;
   }
 });

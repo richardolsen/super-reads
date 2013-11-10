@@ -71,7 +71,7 @@ class Text < ActiveRecord::Base
 
 
   def as_json(options = {})
-    super(:include => [:authors, :reviews], :methods => [:average_rating, :rated?])
+    super(:include => [:authors], :methods => [:average_rating, :rated?])
   end
 
   def rated?

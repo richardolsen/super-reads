@@ -68,14 +68,32 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   textDetail: function(id) {
-    var text = new GooderReads.Models.Text({ id: id });
-    text.fetch();
+    var that = this;
 
-    var show = new GooderReads.Views.TextDetailView({
-      model: text
+    var text = new GooderReads.Models.Text({ id: id });
+    var reviews = new GooderReads.Collections.Reviews([], {
+      text_id: id
     });
 
-    this._swapView(show.render().$el);
+    text.fetch({
+      success: function(data) {
+        text.set(data);
+        var show = new GooderReads.Views.TextDetailView({
+          model: text,
+          reviews: reviews
+        });
+
+        that._swapView(show.render().$el);
+      }
+    });
+
+    reviews.fetch({
+      parse: true,
+      success: function(data) {
+        reviews.reset(data.toJSON());
+        // reviews.reset(data);
+      }
+    })
   },
 
   _swapView: function(newView) {

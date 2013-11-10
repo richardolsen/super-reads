@@ -36,20 +36,20 @@ GooderReads.Views.ReviewFormView = Backbone.View.extend({
 
     var title = $("#review-title-" + this.text.get("id")).val();
     var body = $("#review-body-" + this.text.get("id")).val();
-    var review = new GooderReads.Models.Review({
-      text_id: this.text.get("id"),
-      title: title,
-      body: body
-    });
+    this.model.set("title", title);
+    this.model.set("body", body);
+
+    // the kludge of -1 in id place
+    if(this.model.get("id") === -1) this.model.unset("id");
 
     var that = this;
-    review.save({}, {
+    this.model.save({}, {
       success: function(data) {
         that.toggleModal();
         GooderReads.logSuccess("Review saved");
       },
       error: function(data, response) {
-        GooderReads.logErrors("Unable to save review")
+        GooderReads.logErrors(["Unable to save review"])
       }
     });
   }
