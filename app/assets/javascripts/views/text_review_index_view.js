@@ -8,7 +8,6 @@ GooderReads.Views.TextReviewIndex = Backbone.View.extend({
   },
 
   render: function() {
-    debugger
     var content = this.template({
       reviews: this.collection,
       text: this.text

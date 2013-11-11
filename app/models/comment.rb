@@ -1,5 +1,10 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :title, :body
+  attr_accessible :title,
+                  :body,
+                  :user_id,
+                  :commentable_id,
+                  :commentable_type,
+                  :parent_comment_id
 
   belongs_to :user,
     :class_name => "User",

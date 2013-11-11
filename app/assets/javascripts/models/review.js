@@ -13,5 +13,9 @@ GooderReads.Models.Review = Backbone.Model.extend({
     }
 
     return attrs;
+  },
+
+  postedDateOffset: function() {
+    return moment(this.get("created_at")).fromNow();
   }
 });

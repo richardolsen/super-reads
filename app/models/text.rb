@@ -86,4 +86,14 @@ class Text < ActiveRecord::Base
       0
     end
   end
+
+  def comments_by_parent_id
+    hash = Hash.new { |h, k| h[k] = [] }
+
+    self.comments.includes(:user).each do |comment|
+      hash[comment.parent_comment_id] << comment
+    end
+
+    hash
+  end
 end
