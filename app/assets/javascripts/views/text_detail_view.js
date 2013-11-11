@@ -2,8 +2,6 @@ GooderReads.Views.TextDetailView = Backbone.View.extend({
   template: JST["texts/detail"],
 
   initialize: function(options) {
-    this.reviews = options.reviews;
-
     this.listenTo(this.model, "change", this.render);
     // this.listenTo(this.reviews, "reset", this.render);
   },
@@ -52,6 +50,23 @@ GooderReads.Views.TextDetailView = Backbone.View.extend({
   },
 
   populateReviews: function() {
+    if(!this.reviews) {
+      var that = this;
+
+      this.reviews = new GooderReads.Collections.Reviews([], {
+        text_id: this.model.id
+      });
+      this.reviews.fetch({
+        parse: true,
+        success: function(data) {
+          that.reviews.reset(data.toJSON());
+        },
+        error: function(data, response) {
+          GooderReads.logErrors(["Unable to load reviews"]);
+        }
+      });
+    }
+
     this.reviewView = this.reviewView || new GooderReads.Views.TextReviewIndex({
       collection: this.reviews,
       text: this.model
