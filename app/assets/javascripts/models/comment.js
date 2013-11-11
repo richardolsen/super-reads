@@ -1,4 +1,8 @@
 GooderReads.Models.Comment = Backbone.Model.extend({
+  url: function() {
+    return "/texts/" + this.get("commentable_id") + "/comments";
+  },
+
   parse: function(attrs, options) {
     var user = attrs.user
     if(user) {

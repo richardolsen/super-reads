@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require moment
+//= require jquery.serializeJSON
 //= require js-routes
 //= require bootstrap
 //= require underscore

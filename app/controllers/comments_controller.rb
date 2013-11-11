@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_filter :require_current_user!
+
+
   def index
     # for a text
     # /texts/:text_id/comments
@@ -11,12 +14,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # /texts/:text_id/comments
-    text = Text.find(params[:text_id])
-    comment = text.comments.build(params[:comment])
+    comment = current_user.comments.build(params[:comment])
 
     if comment.save
-      render :json => comment
+      render :json => comment, :include => :user
     else
       render :json => comment.errors
     end

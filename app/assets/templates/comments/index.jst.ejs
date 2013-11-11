@@ -5,6 +5,33 @@
         Community Comments
       </div>
     </div>
+    <div class="row">
+      <div class="span10">
+        <a href="#" class="comment">add comment</a>
+      </div>
+    </div>
+    <div class="row hide" id="comment-form">
+      <div class="span10">
+        <form action="#" class="comment-form">
+          <input type="hidden"
+                 name="comment[commentable_id]"
+                 value="<%= text.get("id") %>">
+          <input type="hidden"
+                 name="comment[commentable_type]"
+                 value="Text">
+          <input type="text"
+                 name="comment[title]"
+                 placeholder="Title">
+          <br>
+          <textarea name="comment[body]"
+                    placeholder="Comment"
+                    cols="60"
+                    rows="5"></textarea>
+          <br>
+          <input type="submit" value="Reply">
+        </form>
+      </div>
+    </div>
 
 
     <% if(comments) { %>
@@ -33,6 +60,37 @@
                 <div class="row">
                   <div class="span6">
                     <%= comment.get("body") %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span6">
+                    <a href="#" class="reply" data-id="<%= comment.get("id") %>">reply</a>
+                  </div>
+                </div>
+
+                <div class="row hide reply-form" id="reply-form-<%= comment.get("id") %>">
+                  <div class="span6">
+                    <form action="#">
+                      <input type="hidden"
+                             name="comment[parent_comment_id]"
+                             value="<%= comment.get("id") %>">
+                      <input type="hidden"
+                             name="comment[commentable_id]"
+                             value="<%= comment.get("commentable_id") %>">
+                      <input type="hidden"
+                             name="comment[commentable_type]"
+                             value="Text">
+                      <input type="text"
+                             name="comment[title]"
+                             value="Re: <%= comment.get("title") %>">
+                      <br>
+                      <textarea name="comment[body]"
+                                placeholder="Comment"
+                                cols="60"
+                                rows="5"></textarea>
+                      <br>
+                      <input type="submit" value="Reply">
+                    </form>
                   </div>
                 </div>
               </div>

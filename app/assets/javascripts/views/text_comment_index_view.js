@@ -2,15 +2,19 @@ GooderReads.Views.TextCommentIndex = Backbone.View.extend({
   template: JST["comments/index"],
 
   initialize: function(options) {
-    this.listenTo(this.collection, "reset", this.organizeComments);
-    this.listenTo(this.collection, "reset", this.render);
+    this.text = options.text;
+
+    this.listenTo(this.collection, "reset add", this.render);
 
     this.organizeComments(this.collection);
   },
 
   render: function() {
+    this.organizeComments();
+
     var content = this.template({
-      comments: this.comments
+      comments: this.comments,
+      text: this.text
     });
 
     this.$el.html(content);
@@ -48,6 +52,47 @@ GooderReads.Views.TextCommentIndex = Backbone.View.extend({
       }
 
       that.comments[pci].push(comment);
+    });
+  },
+
+  events: {
+    "click .reply": "showReplyForm",
+    "click .comment": "showCommentForm",
+    "submit .reply-form": "postComment",
+    "submit .comment-form": "postComment"
+  },
+
+  showReplyForm: function(event) {
+    event.preventDefault();
+
+    var id = $(event.target).attr("data-id");
+    $("#reply-form-" + id).toggleClass("hide");
+  },
+
+  showCommentForm: function(event) {
+    event.preventDefault();
+
+    $("#comment-form").toggleClass("hide");
+  },
+
+  postComment: function(event) {
+    event.preventDefault();
+
+    var that = this;
+
+    var data = $(event.target).serializeJSON();
+
+    var comment = new GooderReads.Models.Comment(data.comment);
+    comment.save({}, {
+      parse: true,
+      success: function(data) {
+        debugger
+        that.collection.unshift(data);
+        GooderReads.logSuccess("Comment added");
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to save comment"]);
+      }
     });
   }
 });
