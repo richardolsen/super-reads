@@ -1,5 +1,6 @@
 GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
   template: JST["texts/index_detail"],
+  _childViews: [],
 
   initialize: function(options) {
     this.listenTo(this.model, "change:state", this.render);
@@ -18,6 +19,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
     var ratingView = new GooderReads.Views.RatingFormView({
       model: this.model
     });
+    this._childViews.push(ratingView);
     $ratingEl.html(ratingView.render().$el);
 
     return this;
@@ -93,6 +95,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
           text: that.model,
           model: data
         });
+        that._childViews.push(reviewView);
 
         var $modalEl = $("#review-modal");
         $modalEl.html(reviewView.render().$el);
@@ -101,6 +104,13 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
       error: function() {
         debugger
       }
+    });
+  },
+
+  removeChildViews: function() {
+    this._childViews.forEach(function(view) {
+      if(view.removeChildren) view.removeChildren();
+      view.remove();
     });
   }
 });

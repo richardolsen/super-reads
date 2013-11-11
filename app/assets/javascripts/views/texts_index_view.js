@@ -1,5 +1,6 @@
 GooderReads.Views.TextsIndexView = Backbone.View.extend({
   template: JST["texts/index"],
+  _childViews: [],
 
   initialize: function(options) {
     this.listenTo(this.collection, "sync", this.render);
@@ -18,9 +19,18 @@ GooderReads.Views.TextsIndexView = Backbone.View.extend({
         user: that.user
       });
 
+      that._childViews.push(detailView);
+
       $subEl.append(detailView.render().$el);
     });
 
     return this;
+  },
+
+  removeChildViews: function() {
+    this._childViews.forEach(function(view) {
+      if(view.removeChildren) view.removeChildren();
+      view.remove();
+    });
   }
 })

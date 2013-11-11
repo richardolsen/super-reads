@@ -1,5 +1,6 @@
 GooderReads.Views.ReviewFormView = Backbone.View.extend({
   template: JST["reviews/form"],
+  _childViews: [],
 
   initialize: function(options) {
     this.text = options.text;
@@ -17,6 +18,7 @@ GooderReads.Views.ReviewFormView = Backbone.View.extend({
     var ratingView = new GooderReads.Views.RatingFormView({
       model: this.text
     });
+    this._childViews.push(ratingView);
     $ratingEl.html(ratingView.render().$el);
 
     return this;
@@ -51,6 +53,13 @@ GooderReads.Views.ReviewFormView = Backbone.View.extend({
       error: function(data, response) {
         GooderReads.logErrors(["Unable to save review"])
       }
+    });
+  },
+
+  removeChildViews: function() {
+    this._childViews.forEach(function(view) {
+      if(view.removeChildren) view.removeChildren();
+      view.remove();
     });
   }
 });

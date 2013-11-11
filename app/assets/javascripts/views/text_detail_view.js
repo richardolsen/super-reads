@@ -98,5 +98,10 @@ GooderReads.Views.TextDetailView = Backbone.View.extend({
     });
 
     this.$el.find("#text-comments").html(this.commentsView.render().$el);
+  },
+
+  removeChildViews: function() {
+    this.commentsView.remove();
+    this.reviewView.remove();
   }
 });

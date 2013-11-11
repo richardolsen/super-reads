@@ -10,7 +10,8 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "user/:id": "userDetail",
     "user/:id/texts": "userTextsIndex",
     "texts": "textsIndex",
-    "text/:id": "textDetail"
+    "text/:id": "textDetail",
+    "friends": "friendsIndex"
   },
 
   index: function() {
@@ -18,7 +19,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
       model: this.user
     });
 
-    this._swapView(show.render().$el);
+    this._swapView(show);
   },
 
   usersIndex: function() {
@@ -29,7 +30,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
       collection: users
     });
 
-    this._swapView(index.render().$el);
+    this._swapView(index);
   },
 
   userDetail: function(id) {
@@ -42,7 +43,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
       model: user
     });
 
-    this._swapView(show.render().$el);
+    this._swapView(show);
   },
 
   userTextsIndex: function(id) {
@@ -53,7 +54,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
       model: user
     });
 
-    this._swapView(index.render().$el);
+    this._swapView(index);
   },
 
   textsIndex: function() {
@@ -64,7 +65,7 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
       collection: texts
     });
 
-    this._swapView(index.render().$el);
+    this._swapView(index);
   },
 
   textDetail: function(id) {
@@ -79,18 +80,23 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
           model: text
         });
 
-        that._swapView(show.render().$el);
+        that._swapView(show);
       }
     });
   },
 
+  friendsIndex: function() {
+    ;
+  },
+
   _swapView: function(newView) {
     if(this._oldView) {
+      if(this._oldView.removeChildViews) this._oldView.removeChildViews();
       this._oldView.remove();
     }
 
     this._oldView = newView;
 
-    this.$rootEl.html(newView);
+    this.$rootEl.html(newView.render().$el);
   }
 });
