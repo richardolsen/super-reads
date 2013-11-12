@@ -31,7 +31,7 @@ GooderReads.Models.User = Backbone.Model.extend({
 
   birthDate: function() {
     var bd = new Date(this.get("birthdate"));
-    return moment(bd).format('MMMM DD, YYYY')
+    return moment.utc(bd).format('MMMM D, YYYY')
   },
 
   joinDate: function() {
@@ -41,10 +41,9 @@ GooderReads.Models.User = Backbone.Model.extend({
 
   age: function() {
     var birthdate = new Date(this.get("birthdate"));
-    var then = moment(birthdate);
-    var now = moment();
+    var now = Date.now();
 
-    return then.fromNow(true);
+    return ~~((now - birthdate) / (31557600000));
   },
 
   parse: function(attrs, options) {
