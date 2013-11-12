@@ -11,7 +11,9 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "user/:id/texts": "userTextsIndex",
     "texts": "textsIndex",
     "text/:id": "textDetail",
-    "friends": "friendsIndex"
+    "friends": "friendsIndex",
+    "authors": "authorsIndex",
+    "author/:id": "authorDetail"
   },
 
   index: function() {
@@ -87,6 +89,29 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
 
   friendsIndex: function() {
     ;
+  },
+
+  authorsIndex: function() {
+    ;
+  },
+
+  authorDetail: function(id) {
+    var author = new GooderReads.Models.Author({ id: id });
+
+    var that = this;
+    author.fetch({
+      success: function(data) {
+        author.set(data.toJSON());
+        var show = new GooderReads.Views.AuthorDetailView({
+          model: author
+        });
+
+        that._swapView(show);
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to get author data"]);
+      }
+    })
   },
 
   _swapView: function(newView) {

@@ -8,8 +8,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
 
   render: function() {
     var content = this.template({
-      text: this.model,
-      user: this.user
+      text: this.model
     });
 
     // this sometimes breaks the modal (but sometimes not)

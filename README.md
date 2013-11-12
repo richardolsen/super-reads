@@ -20,7 +20,9 @@ between readers and writers
 > contrary, readers made a real effort to keep pace with writers, and utilized
 > every spare moment during their walking hours.
 
-...
+Obviously, in these days of even further accelerated production, in print and especially online, readers need a way to hone in on those books they actually want to read.
+
+Enter websites like [GoodReads](https://www.goodreads.com/), which allow readers to connect with other readers with similar tastes, and exchange information.
 
 
 ## Server-side

@@ -69,6 +69,26 @@ class Text < ActiveRecord::Base
     SQL
   end
 
+  def self.find_all_texts_by_author_for_user(author_id, user_id)
+    Text.find_by_sql([<<-SQL, user_id, user_id, author_id])
+      SELECT
+        texts.*,
+        text_states.state AS state,
+        ratings.rating AS user_rating
+      FROM
+        texts
+      LEFT OUTER JOIN
+        text_states ON (texts.id = text_states.text_id AND
+          text_states.user_id = ?)
+      LEFT OUTER JOIN
+        ratings ON (texts.id = ratings.text_id AND
+          ratings.user_id = ?)
+      INNER JOIN
+        text_authors ON (texts.id = text_authors.text_id AND
+          text_authors.author_id = ?)
+    SQL
+  end
+
 
   def as_json(options = {})
     super(:include => [:authors], :methods => [:average_rating, :rated?])

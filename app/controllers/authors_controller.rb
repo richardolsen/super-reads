@@ -6,6 +6,16 @@ class AuthorsController < ApplicationController
 
   def show
     author = Author.includes(:texts).find(params[:id])
-    render :json => author, :include => :texts
+
+    if logged_in?
+      texts = Text.find_all_texts_by_author_for_user(author.id, current_user.id)
+    else
+      texts = author.texts
+    end
+
+    render :json => {
+      author: author,
+      texts: texts
+    }
   end
 end

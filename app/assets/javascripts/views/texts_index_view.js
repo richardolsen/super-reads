@@ -15,8 +15,7 @@ GooderReads.Views.TextsIndexView = Backbone.View.extend({
     var $subEl = this.$el.find(".texts-list");
     this.collection.forEach(function(text) {
       var detailView = new GooderReads.Views.TextsIndexDetailView({
-        model: text,
-        user: that.user
+        model: text
       });
 
       that._childViews.push(detailView);

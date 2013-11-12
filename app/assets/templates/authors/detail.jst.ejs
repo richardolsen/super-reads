@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="span11">
+    <div class="span2">
+      <div class="row">
+        <div class="span2">
+          <img src="/assets/authors/<%= author.get("id") %>.jpg">
+        </div>
+      </div>
+      <div class="row">
+        <div class="span2">
+          <br>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="imurchie" data-lang="en">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+      </div>
+    </div>
+    <div class="span7 offset1 well">
+      <div class="row">
+        <div class="span5">
+          <h1><%= author.get("name") %></h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span1">
+          birthdate
+        </div>
+        <div class="span2 offset1">
+          <%= author.birthDate() %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span1">
+          gender
+        </div>
+        <div class="span2 offset1">
+          <%= author.get("gender") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span1">
+          genre
+        </div>
+        <div class="span2 offset1">
+          genres
+        </div>
+      </div>
+      <div class="row">
+        <div class="span7">
+          <div class="row">
+            <div class="span7">
+              <br>
+              About this author
+            </div>
+            <div class="span7">
+              <%= author.get("bio") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span11 texts-list">
+  </div>
+</div>
