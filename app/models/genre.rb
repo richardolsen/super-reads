@@ -4,7 +4,7 @@ class Genre < ActiveRecord::Base
   has_many :text_genres,
     :class_name => "TextGenre",
     :primary_key => :id,
-    :foreign_key => :text_id
+    :foreign_key => :genre_id
 
   has_many :texts,
     :through => :text_genres,
