@@ -1,8 +1,17 @@
-<div class="well">
-  <span class="user-detail"><%= user.fullname() %></span>
-  <button type="button" class="friend-button btn btn-xs">
-    <%= user.get("friended") ? "unfriend" : "friend" %>
-  </button>
+<div class="row">
+  <div class="span5 user-detail well">
+    <div class="row">
+      <div class="span2">
+        <img src="/assets/users/<%= user.get("username") %>.jpg" width="50px">
+      </div>
+      <div class="span3">
+        <%= user.fullname() %>
+        <button type="button" class="friend-button btn btn-xs">
+          <%= user.get("friended") ? "unfriend" : "friend" %>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="modal-<%= user.get("id") %>">

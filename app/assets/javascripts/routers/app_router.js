@@ -10,6 +10,8 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "user/:id": "userDetail",
     "user/:id/texts": "userTextsIndex",
     "texts": "textsIndex",
+    "texts/genres": "textGenresIndex",
+    "texts/genre/:id": "textGenreDetail",
     "text/:id": "textDetail",
     "friends": "friendsIndex",
     "authors": "authorsIndex",
@@ -70,6 +72,45 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     this._swapView(index);
   },
 
+  textGenresIndex: function() {
+    var that = this;
+
+    var genres = new GooderReads.Collections.Genres();
+    genres.fetch({
+      success: function(data) {
+        genres.reset(data.models);
+        var index = new GooderReads.Views.TextGenresIndexView({
+          collection: genres
+        });
+
+        that._swapView(index);
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to load genre list"]);
+      }
+    })
+  },
+
+  textGenreDetail: function(id) {
+    var that = this;
+
+    $.ajax({
+      url: "/genres/" + id + "/texts",
+      type: "get",
+      success: function(data) {
+        var show = new GooderReads.Views.TextGenreShowView({
+          model: new GooderReads.Models.Genre(data.genre),
+          collection: new GooderReads.Collections.Texts(data.texts, { parse: true })
+        });
+
+        that._swapView(show);
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to load texts"]);
+      }
+    })
+  },
+
   textDetail: function(id) {
     var that = this;
 
@@ -92,7 +133,22 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   authorsIndex: function() {
-    ;
+    var authors = new GooderReads.Collections.Authors();
+
+    var that = this;
+    authors.fetch({
+      success: function(data) {
+        authors.set(data.models);
+        var index = new GooderReads.Views.AuthorIndexView({
+          collection: authors
+        });
+
+        that._swapView(index);
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to get authors list"]);
+      }
+    })
   },
 
   authorDetail: function(id) {

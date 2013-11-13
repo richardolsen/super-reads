@@ -89,6 +89,23 @@ class Text < ActiveRecord::Base
     SQL
   end
 
+  def self.find_all_texts_by_genre_for_user(genre_id, user_id)
+    Text.find_by_sql([<<-SQL, user_id, user_id, genre_id])
+      SELECT
+        texts.*,
+        text_states.state AS state,
+        ratings.rating AS user_rating
+      FROM
+        texts
+      LEFT OUTER JOIN
+        text_states ON (texts.id = text_states.text_id AND text_states.user_id = ?)
+      LEFT OUTER JOIN
+        ratings ON (texts.id = ratings.text_id AND ratings.user_id = ?)
+      INNER JOIN
+        text_genres ON (texts.id = text_genres.text_id AND text_genres.genre_id = ?)
+    SQL
+  end
+
 
   def as_json(options = {})
     super(:include => [:authors], :methods => [:average_rating, :rated?])

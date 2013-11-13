@@ -14,7 +14,10 @@ GooderReads::Application.routes.draw do
     post :rate, :on => :member
   end
   resources :authors, :only => [:show, :index]
-  resources :genres, :only => [:show, :index]
+  resources :genres, :only => [:show, :index] do
+    get :texts, :on => :member
+    get :authors, :on => :member
+  end
 
   root :to => "static_pages#index"
 end

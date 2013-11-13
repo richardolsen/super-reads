@@ -238,3 +238,20 @@ is a profound and timeless inquiry into character, faith, and the nature of
 perception.
 DESCRIPTION
 herman_melville.texts << moby_dick
+
+
+
+
+
+# genres
+lit_and_fiction = Genre.create!(name: "Literature & Fiction")
+
+moby_dick.genres << lit_and_fiction
+herman_melville.genres << lit_and_fiction
+last_samurai.genres << lit_and_fiction
+helen_dewitt.genres << lit_and_fiction
+
+satire = Genre.create!(name: "Satire")
+lightning_rods.genres << satire
+helen_dewitt.genres << satire
+

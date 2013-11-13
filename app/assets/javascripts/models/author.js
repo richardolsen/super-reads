@@ -10,11 +10,17 @@ GooderReads.Models.Author = Backbone.Model.extend({
     if(attrs.author) {
       var author = attrs.author;
       var texts = attrs.texts;
+      var genres = attrs.genres;
 
       texts = new GooderReads.Collections.Texts(texts, {
         parse: true
       });
       author.texts = texts;
+
+      genres = new GooderReads.Collections.Genres(genres, {
+        parse: true
+      });
+      author.genres = genres;
 
 
       return author;
