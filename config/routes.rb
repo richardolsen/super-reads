@@ -3,6 +3,7 @@ GooderReads::Application.routes.draw do
   resources :users, :only => [:show, :index] do
     put :friend, :on => :member
     put :unfriend, :on => :member
+    resources :friends, :only => [:index]
 
     resources :texts, :only => [:index]
   end

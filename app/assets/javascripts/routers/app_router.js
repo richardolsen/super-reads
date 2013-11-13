@@ -18,7 +18,8 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
     "text/:id": "textDetail",
     "friends": "friendsIndex",
     "authors": "authorsIndex",
-    "author/:id": "authorDetail"
+    "author/:id": "authorDetail",
+    "about": "about"
   },
 
   index: function() {
@@ -136,7 +137,24 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   friendsIndex: function() {
-    ;
+    var that = this;
+
+    var friends = new GooderReads.Collections.Friends([], {
+      user_id: this.user.get("id")
+    });
+    friends.fetch({
+      success: function(data) {
+        friends.set(data.models);
+        var friendsView = new GooderReads.Views.FriendsIndexView({
+          collection: friends
+        });
+
+        that._swapView(friendsView);
+      },
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to get friends list"]);
+      }
+    })
   },
 
   authorsIndex: function() {
@@ -175,6 +193,10 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
         GooderReads.logErrors(["Unable to get author data"]);
       }
     })
+  },
+
+  about: function() {
+    ;
   },
 
   _swapView: function(newView) {

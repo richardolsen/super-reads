@@ -1,0 +1,29 @@
+<h1><a href="#/users">Members</a> > <a href="<%= Backbone.history.fragment %>">Friends</a></h1>
+
+<% friends.forEach(function(friend) { %>
+  <div class="row well">
+    <div class="span2">
+      <img src="/assets/users/<%= friend.get("username") %>.jpg" width="75px">
+    </div>
+
+    <div class="span6">
+      <div class="row">
+        <div class="span6">
+          <a href="#/user/<%= friend.get("id") %>"><%= friend.fullname() %></a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span2">
+          Currently reading
+        </div>
+
+        <div class="span4">
+          <% friend.get("currentTexts").forEach(function(text) { %>
+            <a href="#/text/<%= text.get("id") %>"><%= text.get("title") %></a><br>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }); %>
