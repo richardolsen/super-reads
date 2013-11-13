@@ -2,6 +2,9 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   initialize: function($rootEl, user) {
     this.$rootEl = $rootEl;
     this.user = user;
+
+    // initialize the cached collections
+    GooderReads.Collections.allTexts = new GooderReads.Collections.Texts();
   },
 
   routes: {
@@ -62,11 +65,15 @@ GooderReads.Routers.AppRouter = Backbone.Router.extend({
   },
 
   textsIndex: function() {
-    var texts = new GooderReads.Collections.Texts();
-    texts.fetch();
+    GooderReads.Collections.allTexts.fetch({
+      reset: true,
+      error: function(data, response) {
+        GooderReads.logErrors(["Unable to reload texts"])
+      }
+    });
 
     var index = new GooderReads.Views.TextsIndexView({
-      collection: texts
+      collection: GooderReads.Collections.allTexts
     });
 
     this._swapView(index);
