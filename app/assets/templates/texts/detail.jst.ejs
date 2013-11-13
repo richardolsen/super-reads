@@ -7,7 +7,7 @@
   <div class="span3">
     <img src="/assets/texts/<%= text.get("id") %>.jpg">
   </div>
-  <div class="span5">
+  <div class="span8">
     <div class="row">
       <h1><%= text.get("title") %></h1>
     </div>
@@ -21,7 +21,7 @@
           <% i++; %>
         <% }); %>
     </div>
-    <div class="row well">
+    <div class="row well text-description">
       <div id="text-description-short">
         <%= text.shortDescription() %>
         <a href="#" id="text-description-more">more</a>
