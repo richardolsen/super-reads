@@ -55,11 +55,11 @@
         </div>
 
         <div class="row">
-          <div class="span6">
+          <div class="span7">
             What did you think?<br>
             <form action="#" id="review-<%= text.get("id") %>">
               <input type="hidden" id="review-title-<%= text.get("id") %>" value="<%= review.get("title") %>">
-              <textarea name="review" id="review-body-<%= text.get("id") %>" class="review-text"><%= review.get("body") %></textarea>
+              <textarea name="review" id="review-body-<%= text.get("id") %>" class="review-text" rows="7"><%= review.get("body") %></textarea>
             </form>
           </div>
         </div>

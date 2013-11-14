@@ -26,6 +26,7 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
       title: "Select a bookshelf.<br>Choose 'read' to add a review.",
       placement: "right"
     });
+    this.$el.find("[data-toggle='tooltip']").tooltip();
 
     return this;
   },

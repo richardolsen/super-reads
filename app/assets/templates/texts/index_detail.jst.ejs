@@ -8,7 +8,9 @@
   <div class="span7">
     <div class="row">
       <div class="span6 text-detail">
-        <a href="#/text/<%= text.get("id") %>">
+        <a href="#/text/<%= text.get("id") %>"
+          data-toggle="tooltip"
+          title="Click title to see book details, view reviews, and join the discussion!">
           <%= text.escape("title") %>
         </a>
       </div>
