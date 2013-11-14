@@ -27,5 +27,21 @@ GooderReads.Models.Author = Backbone.Model.extend({
     } else {
       return attrs;
     }
+  },
+
+  shortBio: function() {
+    if(this.get("bio")) {
+      return this.get("bio").slice(0, 200);
+    } else {
+      return "";
+    }
+  },
+
+  fullBio: function() {
+    if(this.get("bio")) {
+      return this.get("bio");
+    } else {
+      return "";
+    }
   }
 });

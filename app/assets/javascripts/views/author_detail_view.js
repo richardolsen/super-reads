@@ -20,5 +20,17 @@ GooderReads.Views.AuthorDetailView = Backbone.View.extend({
     $subEl.html(textsView.render().$el);
 
     return this;
+  },
+
+  events: {
+    "click #author-bio-more": "switchBio",
+    "click #author-bio-less": "switchBio"
+  },
+
+  switchBio: function(event) {
+    event.preventDefault();
+
+    $("#author-bio-long").toggleClass("hide");
+    $("#author-bio-short").toggleClass("hide");
   }
 });

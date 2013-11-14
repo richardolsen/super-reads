@@ -53,8 +53,15 @@
               <br>
               About this author
             </div>
-            <div class="span7 author-bio">
-              <%= author.get("bio") %>
+          </div>
+          <div class="row">
+            <div class="span7 author-bio" id="author-bio-short">
+              <%= author.shortBio() %>
+              <a href="#" id="author-bio-more">more</a>
+            </div>
+            <div class="span7 author-bio hide" id="author-bio-long">
+              <%= author.fullBio() %>
+              <a href="#" id="author-bio-less">less</a>
             </div>
           </div>
         </div>
