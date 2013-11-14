@@ -14,6 +14,11 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
     this.$el.html(content);
     this.resetRating();
 
+    this.$el.find(".star-div").tooltip({
+      title: "Rate this book!",
+      placement: "right"
+    });
+
     return this;
   },
 
@@ -69,5 +74,5 @@ GooderReads.Views.RatingFormView = Backbone.View.extend({
         GooderReads.logErrors(["Unable to save rating"]);
       }
     })
-  },
+  }
 });

@@ -21,6 +21,12 @@ GooderReads.Views.TextsIndexDetailView = Backbone.View.extend({
     this._childViews.push(ratingView);
     $ratingEl.html(ratingView.render().$el);
 
+    this.$el.find("#dropdown-menu-" + this.model.get("id")).tooltip({
+      html: true,
+      title: "Select a bookshelf.<br>Choose 'read' to add a review.",
+      placement: "right"
+    });
+
     return this;
   },
 

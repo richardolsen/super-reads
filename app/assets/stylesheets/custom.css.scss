@@ -14,15 +14,6 @@ body {
   padding-top: 60px;
 }
 
-.login-screen {
-  background-image: url("/assets/books-smaller.jpg");
-}
-
-.col-centered {
-    float: none;
-    margin: 0 auto;
-}
-
 section {
   overflow: auto;
 }
@@ -68,6 +59,18 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+
+/* login page */
+
+.login-screen {
+  background-image: url("/assets/books-smaller.jpg");
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
 }
 
 
