@@ -9,13 +9,19 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="row header"></div>
-    <div class="row">
-      <div class="span4 offset5">
-        <div class="status-alerts" data-spy="affix" data-offset-top="20px"></div>
+  <% if logged_in? %>
+    <div class="container">
+      <div class="row header"></div>
+      <div class="row">
+        <div class="span4 offset5">
+          <div class="status-alerts" data-spy="affix" data-offset-top="20px"></div>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <script>
+        $("body").addClass("login-screen");
+      </script>
+    <% end %>
     <div id="main">
       <%= yield %>
     </div>
