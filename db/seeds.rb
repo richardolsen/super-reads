@@ -343,7 +343,7 @@ herman_melville.texts << moby_dick
 
 harry_potter_1 = Text.create!(title: "Harry Potter and the Sorcerer's Stone",
                               publisher_id: scholastic.id,
-                              published_date: "November 1, 2003",
+                              published_date: "January 1, 1997",
                               description: <<-DESCRIPTION)
 Harry Potter has never played a sport while flying on a broomstick. He's never
 worn a Cloak of Invisibility, befriended a giant, or helped hatch a dragon. All
@@ -357,6 +357,106 @@ he finds not only friends, aerial sports, and magic around every corner, but a
 great destiny that's been waiting for him... if Harry can survive the encounter.
 DESCRIPTION
 j_k_rowling.texts << harry_potter_1
+
+harry_potter_2 = Text.create!(title: "Harry Potter and the Chamber of Secrets",
+                              publisher_id: scholastic.id,
+                              published_date: "June 2, 1999",
+                              description: <<-DESCRIPTION)
+The Dursleys were so mean and hideous that summer that all Harry Potter wanted
+was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as
+he's packing his bags, Harry receives a warning from a strange, impish creature
+named Dobby who says that if Harry Potter returns to Hogwarts, disaster will
+strike.
+
+And strike it does. For in Harry's second year at Hogwarts, fresh torments and
+horrors arise, including an outrageously stuck-up new professor, Gilderoy
+Lockheart, a spirit named Moaning Myrtle who haunts the girl's bathroom, and the
+unwanted attentions of Ron Weasley's younger sister, Ginny.
+
+But each of these seem minor annoyances when the real trouble beings, and
+someone--or something--starts turning Hogwarts students to stone. Could it be
+Draco Malfoy, a more poisonous rival than ever? Could it possibly be Hagrid,
+whose mysterious past is finally told? Or could it be the one everyone at
+Hogwarts most suspects...Harry Potter himself.
+DESCRIPTION
+j_k_rowling.texts << harry_potter_2
+
+harry_potter_3 = Text.create!(title: "Harry Potter and the Prisoner of Azkaban",
+                              publisher_id: scholastic.id,
+                              published_date: "July 8, 1999",
+                              description: <<-DESCRIPTION)
+Harry Potter is lucky to reach the age of thirteen, since he has already
+survived the murderous attacks of the feared Dark Lord on more than one occasion.
+But his hopes for a quiet term concentrating on Quidditch are dashed when a
+maniacal mass-murderer escapes from Azkaban, pursued by the soul-sucking Dementors
+who guard the prison. It's assumed that Hogwarts is the safest place for Harry to
+be. But is it a coincidence that he can feel eyes watching him in the dark, and
+should he be taking Professor Trelawney's ghoulish predictions seriously?
+DESCRIPTION
+j_k_rowling.texts << harry_potter_3
+
+harry_potter_4 = Text.create!(title: "Harry Potter and the Goblet of Fire",
+                              publisher_id: scholastic.id,
+                              published_date: "July 8, 2000",
+                              description: <<-DESCRIPTION)
+The summer holidays are dragging on and Harry Potter can't wait for the start of
+the school year. It is his fourth year at Hogwarts School of Witchcraft and
+Wizardry, and there are spells to be learnt, potions to be brewed and Divination
+lessons (sigh) to be attended.
+DESCRIPTION
+j_k_rowling.texts << harry_potter_4
+
+harry_potter_5 = Text.create!(title: "Harry Potter and the Order of the Phoenix",
+                              publisher_id: scholastic.id,
+                              published_date: "June 21, 2003",
+                              description: <<-DESCRIPTION)
+Harry Potter is due to start his fifth year at Hogwarts School of Witchcraft and
+Wizardry. His best friends Ron and Hermione have been very secretive all summer
+and he is desperate to get back to school and find out what has been going on.
+However, what Harry discovers is far more devastating than he could ever have
+expected...
+
+Suspense, secrets and thrilling action from the pen of J.K. Rowling ensure an
+electrifying adventure that is impossible to put down.
+DESCRIPTION
+j_k_rowling.texts << harry_potter_5
+
+harry_potter_6 = Text.create!(title: "Harry Potter and the Half-Blood Prince",
+                              publisher_id: scholastic.id,
+                              published_date: "September 16, 2005",
+                              description: <<-DESCRIPTION)
+The war against Voldemort is not going well; even the Muggle governments are
+noticing. Ron scans the obituary pages of the Daily Prophet, looking for familiar
+names. Dumbledore is absent from Hogwarts for long stretches of time, and the
+Order of the Phoenix has already suffered losses.
+
+And yet, as with all wars, life goes on. Sixth-year students learn to Apparate—-and
+lose a few eyebrows in the process. Teenagers flirt and fight and fall in love.
+Classes are never straightforward, though Harry receives some extraordinary help
+from the mysterious Half-Blood Prince.
+
+So it's the home front that takes center stage in the multilayered sixth
+installment of the story of Harry Potter. Here at Hogwarts, Harry will search
+for the full and complex story of the boy who became Lord Voldemort—and thereby
+find what may be his only vulnerability.
+DESCRIPTION
+j_k_rowling.texts << harry_potter_6
+
+harry_potter_7 = Text.create!(title: "Harry Potter and the Deathly Hallows",
+                              publisher_id: scholastic.id,
+                              published_date: "August 1, 2007",
+                              description: <<-DESCRIPTION)
+Harry Potter is preparing to leave the Dursleys and Privet Drive for the last
+time. But the future that awaits him is full of danger, not only for him, but
+for anyone close to him — and Harry has already lost so much. Only by destroying
+Voldemort's remaining Horcruxes can Harry free himself and overcome the Dark
+Lord's forces of evil.
+
+In this dramatic conclusion to the Harry Potter series, Harry must leave his most
+loyal friends behind, and in a final perilous journey find the strength and the
+will to face his terrifying destiny: a deadly confrontation that is his alone to
+fight.
+DESCRIPTION
 
 
 
@@ -374,4 +474,9 @@ helen_dewitt.genres << satire
 
 young_adult = Genre.create!(name: "Young Adult")
 harry_potter_1.genres << young_adult
+harry_potter_2.genres << young_adult
+harry_potter_3.genres << young_adult
+harry_potter_4.genres << young_adult
+harry_potter_5.genres << young_adult
+harry_potter_6.genres << young_adult
 j_k_rowling.genres << young_adult
