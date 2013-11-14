@@ -480,3 +480,233 @@ harry_potter_4.genres << young_adult
 harry_potter_5.genres << young_adult
 harry_potter_6.genres << young_adult
 j_k_rowling.genres << young_adult
+
+
+
+# reviews
+peter_pevensie.reviews.create!(text_id: harry_potter_1.id,
+  title: "",
+  body: <<-REVIEW)
+I'm going to keep this brief since there isn't much to say that hasn't already
+been said. *clears throat*
+
+I think the reason I waited so long to read this series is because I just
+couldn't imagine myself enjoying reading about an eleven-year-old boy and his
+adventures at a school of wizardry. I thought it would be too juvenile for my
+taste. I was wrong, of course.
+
+I can honestly say that I loved every minute of this. It's a spectacular little
+romp with funny, courageous, and endearing characters that you can't help but
+love.
+
+It has talking chess pieces, singing hats, a giant three-headed dog named Fluffy,
+a hilarious giant with a dragon fetish, a master wizard that's just a little bit
+crazy, mail carrier owls, goblins running a bank, unicorns, centaurs(!),
+trolls . . . and probably much more that I'm forgetting.
+
+And then there's the lead characters: Hermione, the young scholar who starts out
+prim and up-tight but soon becomes a true friend; Ron, the boy who has little
+money but who has an abundance of family and loyalty to his friends to make up
+for it; and then there's Harry, the boy who starts out sleeping in a closet and
+ends up being a hero. Harry is kind to those that deserve it, fearless when it
+counts the most, and wonderfully intelligent. What's not to love?
+REVIEW
+peter_pevensie.ratings.create!(text_id: harry_potter_1.id, rating: 5)
+
+charlotte_cavatica.reviews.create!(text_id: harry_potter_1.id,
+  title: "",
+  body: <<-REVIEW)
+Overall, this series is the most memorable from my childhood. I was originally
+introduced to the series in third grade and immediately fell in love with the
+realistic characters, suspenseful plot, and flawless writing style. I was the
+diehard fan who watched each movie a dozen times at the same movie theater,
+eventually coming to know the employees at the concessions stand on a first name
+basis. For Halloween last year, in fact, I dressed up in an old pair of robes,
+pulled on a wig, and drew a scar on my forehead. And to this day, I find myself
+reciting quotes from the series. I was crushed after the release of the final
+book, feeling that part of my childhood had ended with the series. Looking back,
+I have never once regretted the time I have spent reading and rereading the
+series, committing it to memory. The Harry Potter series has served as more than
+a way to pass the time; it has helped to shape the person I am today.
+REVIEW
+charlotte_cavatica.ratings.create!(text_id: harry_potter_1.id, rating: 5)
+
+atticus_finch.reviews.create!(text_id: harry_potter_1.id,
+  title: "",
+  body: <<-REVIEW)
+Fairly standard kid's fantasy fare from Rowling as she re-introduces the world
+to the classic British fairy tale, which had been mostly forgotten since Tolkien
+spliced it with the epic. She mines gold from this rich and storied tradition,
+but doesn't really fashion anything unique from it.
+
+We can see the beginnings of Rowling's authorial failings (and a hint of her
+strengths as well). She adopts Rouald Dahl's 'awful family' trope, though it's
+clear that Rowling does not have the gift of bizarre characterization or the
+knowledge of the darker parts of the human soul that made his books resonate.
+
+She writes sympathetic characters, but not unusual ones. Overall her writing has
+relatively little character or style. Then again, mass success often requires
+leaving the more unusual elements behind. So she relies on standard character
+types, managing to keep them afloat through the patented perpetual plot of the
+airplane book.
+REVIEW
+atticus_finch.ratings.create!(text_id: harry_potter_1.id, rating: 3)
+
+holly_golightly.reviews.create!(text_id: kavalier_and_clay.id,
+  title: "",
+  body: <<-REVIEW)
+The Amazing Adventures of Kavalier and Clay is amazing. Well, some of it is. To
+be specific I found it fairly amazing up until about page 429. Then it got
+slightly less amazing which was sad really because, prior to that it was zipping
+along so nicely like Superman with a new stream-lined cape sliding in and out of
+the slip stream. After page 429 it became a bit more like Superman trying to
+erratically jump over tall buildings with Dr Octopus tied to one leg and the
+Juggernaut tied to the other.
+REVIEW
+holly_golightly.ratings.create!(text_id: kavalier_and_clay.id, rating: 5)
+
+dean_moriarty.reviews.create!(text_id: kavalier_and_clay.id,
+  title: "",
+  body: <<-REVIEW)
+"Absolutely, gosh ,wow" (cover quip) on his sentences? Yes, very yes. Chabon can
+flat out compose sentences. Think Dickens, Pynchon, Tolstoy. But that's it. You
+keep waiting for the sentences to compile some meaning but they never seem to
+achieve any depth. He uses the backdrop of the comic book heydays, WWII, and
+magic acts, his neither here nor there Jewish-ness, to stitch together an overly
+long book that basically explores the relationship between two male characters
+who are caricatures themselves. And, frankly, even those relationships--friendships
+and sexual identities-- I do not see develop. They are more like "Mr. In and Mr.
+Out" in Fitzgerald's whimsical short story. A Jungian analysis holds that all
+the people in your dreams are simply fractions of your own persona. Two sides
+of the same persona. The dance is in his head. A gifted writer, a fascinating
+mind, needs a deeper theme. This is not DeLillo.
+
+I found his brilliance frustrating, getting constantly lost in the wonderful
+sentences and not ever finding myself in the forest of the story. He is a gifted
+researcher as well, and shares everything he learns about a wide spectrum but
+again, all seems mere convenience for the flow of words that magically cascade,
+effusively blossom, out of each new idea, as if the primordial stew of vowels
+and consonants impulsively births new cranial cognitions that the author’s
+creative ether must spontaneously, irrepressibly deliver to his delighted and by
+now addicted, but too addled readers. I don’t get this Pulitzer, but then I find
+most Pulitzers stilted, safe, reliable good prosey.
+
+I hope Chabon finds a theme worthy of his words. He should re-read page 286 and
+make his own decision between art and money. I find in the postmodern, good
+writers wreak havoc among real lives in order to construct a profitable memoir.
+Real people ought not to be autopsied alive for the sake of an extended fiction.
+REVIEW
+dean_moriarty.ratings.create!(text_id: kavalier_and_clay.id, rating: 4)
+
+guest.reviews.create!(text_id: kavalier_and_clay.id,
+  title: "",
+  body: <<-REVIEW)
+Chabon is now one of my three favorite contemporary writers (others are David
+Foster Wallace and Neal Stephenson) with his graceful, elegant prose, extensive
+vocabulary, and entertaining plot. While the book was not "fall-on-the-floor-funny"
+as one reviewer says, it certainly was entertaining and beautifully written. I
+really was floored by many of his metaphors.
+REVIEW
+guest.ratings.create!(text_id: kavalier_and_clay.id, rating: 5)
+
+peter_pevensie.reviews.create!(text_id: kavalier_and_clay.id,
+  title: "",
+  body: <<-REVIEW)
+this is a bit of a rant. i liked this book, but it just did not live up to my
+expectations. what to say. not quite sure. it opens great. sammy's background
+with his father and joe's escape from prague are a wonderful set up. but in some
+ways, in particular joe's very adventurous beginning, the beginning is unbalanced.
+we never really see that kind of adventure again. but nor do we want to, because
+the beauty of this novel is that "the amazing adventures" of these two men are
+not super-hero like escapades, but the everyday triumphs, ordeals, and
+suffering two middle-class men in america might face in that time. they are
+not saving women and foiling super villains. they are doing the unglamorous
+and unfullfilling: creating their art of which they do not reap the full benefit,
+living a lie and losing a chance at love because of others' closed minded views
+on sexuality, and living with extreme guilt because you live comfortably while
+your family abroad is killed for no good reason and on top of that feeling
+powerless to stop it. at times all of that great, everyday desperation comes out.
+i like that sammy is kind of joe's side-kick in keeping with the comic book theme.
+though i think not enough attention is given sammy through most of the book.
+chabon's talent for detail and research or very evident here. the wet streets
+and smokey dinner rooms of prague, the inky, long hours of the comic business.
+awesome.
+
+but for me the book seems to lose its sturdy ground after the first 200 pages or
+so and not gain it back until the end. for me too much detail or space was focused
+in the wrong place. chabon's writing is solid, which comes out is his descriptions
+of action, work, cities, food. but the writing does not dig the reader deeper into
+the story, into the characters.
+REVIEW
+peter_pevensie.ratings.create!(text_id: kavalier_and_clay.id, rating: 3)
+
+guest.reviews.create!(text_id: my_name_is_red.id,
+  title: "",
+  body: <<-REVIEW)
+It’s not a historical, though there is sort of history in it (Istanbul, Ottoman
+Empire, 1591). The mystery death of two master miniaturists doesn’t make it a
+murder mystery novel either. It’s not a philosophical novel though there are
+lots of discussions about illusrtation in European style concerning perspective,
+and traditional Eastern illustrating, which sees the world in the way Allah would
+see it.
+
+What amazed me is, how Pamuk has taken a now forbiden discussion, to 5 centuries
+back, to stablish a better situation to discuss about tabus, concerning the
+distinctions between Islamic states and Western Europe. It's how the so-called
+Islamic style of illuminating lost it’s values to the so-called Frankish mode of
+painting, painting the earthly wealth, rather than images of what God creates on
+earth. In another word, demonstrating the creative abilities of the artist
+(European style) which Enishte effendi finds fascinating is forbiden in Islam,
+as if it’s kind of competing with God in creation. That’s why some other master
+miniaturists kill him to not loose their stabilities and honour as artists. It
+means that those who are not seeing the realilty of life and human being
+(idealists) are going to loose their style and power. This describes the
+restrained violence of the culture clashes which are so relevant to our world at
+this time through the allegory of artistic expression as European manner of
+representing the world, and that of the Islamic faith, in the novel!
+REVIEW
+guest.ratings.create!(text_id: my_name_is_red.id, rating: 4)
+
+holly_golightly.reviews.create!(text_id: my_name_is_red.id,
+  title: "",
+  body: <<-REVIEW)
+A triumph of hype over substance, I thought. I'm not sure whether this is
+because of Pamuk himself, or whether the astonishingly stiff and formal style of
+the narrative can be attributed to the translator, but I was very much
+underwhelmed by this. The aspects of the novel which covered the differences
+between Western Christian and Islamic perceptions of art and aesthetics were
+certainly interesting; there were also some moments of true inventiveness and
+creativity, such as the chapters which were narrated from the point of view of a
+sketch of a dog, or the colour red. For the most part, though, I found the
+characters unengaging, flat and irritating, with Pamuk liking to show off, almost,
+through them. It's a very uneven mix of dialogue, plot, history and theology, and
+while not a bad novel, per se, I really don't think I'll ever be coming back to
+it.
+REVIEW
+holly_golightly.ratings.create!(text_id: my_name_is_red.id, rating: 1)
+
+peter_pevensie.reviews.create!(text_id: my_name_is_red.id,
+  title: "",
+  body: <<-REVIEW)
+I was deeply troubled by the low quality of this book. The structure and concept
+are interesting: rotating narration in the wake of a Turkish murder in the Middle
+Ages; in keeping with traditional murder mysteries it is the role of the author
+to use each character's narrative as evidence; love triangles, death, sleaze,
+domestic violence, sexual violence, in fact violence in any and every form it
+existed five centuries ago between the backstreets of Eurasia. It sounded
+promising.
+
+Unfortunately, the storyline is dull and lifeless - much like the characters
+that populate its 800 pages. The only thing to celebrate about this book is
+reaching the long-awaited finale, not because of any fantastic twist (I'm only
+guessing here since after 9 weeks trawling through its passionless pages I am
+finally giving up) but because there's no more left to read.
+
+I'm going to assume that this book has been poorly translated, though my issue
+is not so much with the prose as everything else, because it is the only way I
+can conceive that this is the same author that received the 2006 Nobel Prize for
+Literature.
+REVIEW
+peter_pevensie.ratings.create!(text_id: my_name_is_red.id, rating: 2)
+
+
