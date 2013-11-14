@@ -710,3 +710,29 @@ REVIEW
 peter_pevensie.ratings.create!(text_id: my_name_is_red.id, rating: 2)
 
 
+# ratings for unreviewed books
+peter_pevensie.ratings.create!(text_id: harry_potter_2.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: harry_potter_3.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: harry_potter_4.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: harry_potter_5.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: harry_potter_6.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: harry_potter_7.id, rating: (rand(5) + 1))
+
+peter_pevensie.ratings.create!(text_id: last_samurai.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: lightning_rods.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: snow.id, rating: (rand(5) + 1))
+peter_pevensie.ratings.create!(text_id: moby_dick.id, rating: (rand(5) + 1))
+
+isaac.ratings.create!(text_id: harry_potter_1.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_2.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_3.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_4.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_5.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_6.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: harry_potter_7.id, rating: (rand(5) + 1))
+
+isaac.ratings.create!(text_id: last_samurai.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: lightning_rods.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: snow.id, rating: (rand(5) + 1))
+isaac.ratings.create!(text_id: moby_dick.id, rating: (rand(5) + 1))
+
