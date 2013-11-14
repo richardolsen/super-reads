@@ -12,6 +12,7 @@ gem "font-awesome-sass"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "js-routes"
+gem "newrelic_rpm"
 gem "pg"
 gem "rails_12factor"
 
