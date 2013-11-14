@@ -737,6 +737,7 @@ isaac.ratings.create!(text_id: moby_dick.id, rating: (rand(5) + 1))
 
 # set up guest user with some books
 guest.text_states.create!(text_id: my_name_is_red.id, state: :current)
+guest.text_states.create!(text_id: kavalier_and_clay.id, state: :read)
 guest.text_states.create!(text_id: last_samurai.id, state: :read)
 guest.text_states.create!(text_id: harry_potter_1.id, state: :read)
 guest.text_states.create!(text_id: snow.id, state: :read)
