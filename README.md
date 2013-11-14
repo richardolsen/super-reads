@@ -7,6 +7,7 @@
     - [Authentication](#authentication)
     - [Database Model](#databasemodel)
 3. [Client-side](#client-side)
+4. [To Do](#todo)
 
 
 ## Readers
@@ -76,7 +77,10 @@ random 16-character strings as session keys. I chose to write my own authenticat
 system in order to have more control over the codebase and to limit the amount
 delegated to third parties. The system as it stands only has a single role, that
 of the current user, who is authorized to do any _creation_ of elements. Other
-users can read the data of all elements. .
+users can read the data of all elements.
+
+Users are identified by _two_ unique attributes, `username` and `email`. They can
+use either to login. Internally `username` is given precedence.
 
 
 ### Database model
@@ -113,3 +117,20 @@ immediately updated while being viewed. With a larger load this caching could be
 shored up with a more sophisticated system for checking up-to-dateness, in addition
 to the possibility of being supplemented with server-side caching with a system
 such as Redis or Memcached.
+
+
+## To Do
+
+The implementation as it stands covers the basic functionality, but other features
+would be nice. Particularly those involved in interacting users. Thus we would like
+
+    - messaging between users
+    - user recommendations (one user to another)
+    - notifications of recent activity of other users
+
+Another level of recommendations would be nice, but would require a significantly
+larger data set and user base, to allow for automated taste-based recommendations.
+
+The last _big_ desideratum is a feature for searching books, authors, and genres.
+Finding anything now is based on browsing, which is fine for a small amount of data
+but would be unwieldy with much more.
