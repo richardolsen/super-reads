@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :title, :body
+  attr_accessible :title, :body, :text_id
 
   validates :user_id, :uniqueness => { :scope => :text_id }
 
