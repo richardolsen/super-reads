@@ -71,6 +71,13 @@ end
 
 ### Authentication
 
+Authentication is handled on the server with a hand-rolled solution based on
+random 16-character strings as session keys. I chose to write my own authentication
+system in order to have more control over the codebase and to limit the amount
+delegated to third parties. The system as it stands only has a single role, that
+of the current user, who is authorized to do any _creation_ of elements. Other
+users can read the data of all elements. .
+
 
 ### Database model
 
