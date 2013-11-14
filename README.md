@@ -127,10 +127,21 @@ would be nice. Particularly those involved in interacting users. Thus we would l
     - messaging between users
     - user recommendations (one user to another)
     - notifications of recent activity of other users
+    - commenting on things other than books. Comments on authors, genres, reviews, etc.
 
 Another level of recommendations would be nice, but would require a significantly
 larger data set and user base, to allow for automated taste-based recommendations.
 
+Comments and reviews are currently just treated as text. The only processing is
+to protect from injection attacks. It would be nice to allow for some markup so
+users can format their comments and reviews nicely. We could use a markdown-style
+processing engine with little difficultly.
+
 The last _big_ desideratum is a feature for searching books, authors, and genres.
 Finding anything now is based on browsing, which is fine for a small amount of data
 but would be unwieldy with much more.
+
+On a different level is integration with other social-media sites. At the moment
+there is the ability to [tweet](http://twitter.com/) about particular pages.
+Integration with other sites, like [Facebook](http://www.facebook.com/), would
+be a lovely feature.
