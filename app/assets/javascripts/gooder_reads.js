@@ -12,6 +12,8 @@ window.GooderReads = {
       new GooderReads.Routers.AppRouter($("#main"), GooderReads.user);
 
       Backbone.history.start();
+
+      GooderReads.logSuccess("Welcome back, " + GooderReads.user.fullname());
     } else {
       GooderReads.user = undefined;
       this.installHeader($(".header"), null);
