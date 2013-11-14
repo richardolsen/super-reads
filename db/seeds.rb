@@ -118,8 +118,6 @@ being an author "who in the quest for the melancholic soul of his native city ha
 discovered new symbols for the clash and interlacing of cultures."
 BIO
 
-erdag_goknar = Author.create!(name: "Erdağ M. Göknar")
-
 herman_melville = Author.create!(name: "Herman Melville",
                                  birthday: "August 01, 1819",
                                  gender: "male",
@@ -208,43 +206,6 @@ scholastic = Publisher.create!(name: "Scholastic Press", city: "New York")
 
 
 # texts
-last_samurai = Text.create!(title: "The Last Samurai",
-                            publisher_id: miramax.id,
-                            published_date: "April 3rd 2002",
-                            description: <<-DESCRIPTION)
-Helen DeWitt's extraordinary debut, The Last Samurai, centers on the relationship
-between Sibylla, a single mother of precocious and rigorous intelligence, and her
-son, who, owing to his mother's singular attitude to education, develops into a
-prodigy of learning. Ludo reads Homer in the original Greek at 4 before moving
-on to Hebrew, Japanese, Old Norse, and Inuit; studying advanced mathematical
-techniques (Fourier analysis and Laplace transformations); and, as the title
-hints, endlessly watching and analyzing Akira Kurosawa's masterpiece, The Seven
-Samurai. But the one question that eludes an answer is that of the name of his
-father: Sibylla believes the film obliquely provides the male role models that
-Ludo's genetic father cannot, and refuses to be drawn on the question of paternal
-identity. The child thinks differently, however, and eventually sets out on a search,
-one that leads him beyond the certainties of acquired knowledge into the complex
-and messy world of adults.The novel draws on themes topical and perennial--the
-hothousing of children, the familiar literary trope of the quest for the (absent)
-father--and as such, divides itself into two halves: the first describes Ludo's
-education, the second follows him in his search for his father and father figures.
-The first stresses a sacred, Apollonian pursuit of logic, precise (if wayward)
-erudition, and the erratic and endlessly fascinating architecture of languages,
-while the second moves this knowledge into the world of emotion, human ambitions,
-  and their attendant frustrations and failures.
-
-The Last Samurai is about the pleasure of ideas, the rich varieties of human
-thought, the possibilities that life offers us, and, ultimately, the balance
-between the structures we make of the world and the chaos that it proffers in
-return. Stylistically, the novel mirrors this ambivalence: DeWitt's remarkable
-prose follows the shifts and breaks of human consciousness and memory, capturing
-the intrusions of unspoken thought that punctuate conversation while providing
-tantalizing disquisitions on, for example, Japanese grammar or the physics of
-aerodynamics. It is remarkable, profound, and often very funny. Arigato
-DeWitt-sensei. --Burhan Tufail
-DESCRIPTION
-helen_dewitt.texts << last_samurai
-
 kavalier_and_clay = Text.create!(title: "The Amazing Adventures of Kavalier & Clay",
                                  publisher_id: picador.id,
                                  published_date: "August 25th 2001",
@@ -282,7 +243,43 @@ when one of the chosen miniaturists disappears. The only clue to the mystery–o
 Translated from the Turkish by Erda M Göknar
 DESCRIPTION
 orhan_pamuk.texts << my_name_is_red
-erdag_goknar.texts << my_name_is_red
+
+last_samurai = Text.create!(title: "The Last Samurai",
+                            publisher_id: miramax.id,
+                            published_date: "April 3rd 2002",
+                            description: <<-DESCRIPTION)
+Helen DeWitt's extraordinary debut, The Last Samurai, centers on the relationship
+between Sibylla, a single mother of precocious and rigorous intelligence, and her
+son, who, owing to his mother's singular attitude to education, develops into a
+prodigy of learning. Ludo reads Homer in the original Greek at 4 before moving
+on to Hebrew, Japanese, Old Norse, and Inuit; studying advanced mathematical
+techniques (Fourier analysis and Laplace transformations); and, as the title
+hints, endlessly watching and analyzing Akira Kurosawa's masterpiece, The Seven
+Samurai. But the one question that eludes an answer is that of the name of his
+father: Sibylla believes the film obliquely provides the male role models that
+Ludo's genetic father cannot, and refuses to be drawn on the question of paternal
+identity. The child thinks differently, however, and eventually sets out on a search,
+one that leads him beyond the certainties of acquired knowledge into the complex
+and messy world of adults.The novel draws on themes topical and perennial--the
+hothousing of children, the familiar literary trope of the quest for the (absent)
+father--and as such, divides itself into two halves: the first describes Ludo's
+education, the second follows him in his search for his father and father figures.
+The first stresses a sacred, Apollonian pursuit of logic, precise (if wayward)
+erudition, and the erratic and endlessly fascinating architecture of languages,
+while the second moves this knowledge into the world of emotion, human ambitions,
+  and their attendant frustrations and failures.
+
+The Last Samurai is about the pleasure of ideas, the rich varieties of human
+thought, the possibilities that life offers us, and, ultimately, the balance
+between the structures we make of the world and the chaos that it proffers in
+return. Stylistically, the novel mirrors this ambivalence: DeWitt's remarkable
+prose follows the shifts and breaks of human consciousness and memory, capturing
+the intrusions of unspoken thought that punctuate conversation while providing
+tantalizing disquisitions on, for example, Japanese grammar or the physics of
+aerodynamics. It is remarkable, profound, and often very funny. Arigato
+DeWitt-sensei. --Burhan Tufail
+DESCRIPTION
+helen_dewitt.texts << last_samurai
 
 snow = Text.create!(title: "Snow",
                     publisher_id: vintage.id,
@@ -457,7 +454,7 @@ loyal friends behind, and in a final perilous journey find the strength and the
 will to face his terrifying destiny: a deadly confrontation that is his alone to
 fight.
 DESCRIPTION
-
+j_k_rowling.texts << harry_potter_7
 
 
 # genres
@@ -736,3 +733,13 @@ isaac.ratings.create!(text_id: lightning_rods.id, rating: (rand(5) + 1))
 isaac.ratings.create!(text_id: snow.id, rating: (rand(5) + 1))
 isaac.ratings.create!(text_id: moby_dick.id, rating: (rand(5) + 1))
 
+
+
+# set up guest user with some books
+guest.text_states.create!(text_id: my_name_is_red.id, state: :current)
+guest.text_states.create!(text_id: last_samurai.id, state: :read)
+guest.text_states.create!(text_id: harry_potter_1.id, state: :read)
+guest.text_states.create!(text_id: snow.id, state: :read)
+guest.text_states.create!(text_id: moby_dick.id, state: :read)
+guest.text_states.create!(text_id: harry_potter_2.id, state: :queue)
+guest.text_states.create!(text_id: harry_potter_3.id, state: :queue)
