@@ -735,6 +735,62 @@ isaac.ratings.create!(text_id: moby_dick.id, rating: (rand(5) + 1))
 
 
 
+# comments
+main_comment = guest.comments.create!(commentable_id: kavalier_and_clay.id,
+  commentable_type: "Text",
+  title: "What is the origin of 'Golem'?",
+  body: <<-COMMENT)
+Before this I had only heard of 'Golem' in the context of Tolkien's Lord of the
+Rings. But it seems bigger? And why did Tolkien choose that name?
+COMMENT
+main_comment.created_at = main_comment.created_at - 4.hours
+main_comment.save!
+
+sub_comment_1 = dean_moriarty.comments.create!(commentable_id: kavalier_and_clay.id,
+  commentable_type: "Text",
+  parent_comment_id: main_comment.id,
+  title: "Re: What is the origin of 'Golem'?",
+  body: <<-COMMENT)
+In Jewish folklore, a golem (Hebrew: גולם‎) is an animated
+anthropomorphic being, created entirely from inanimate matter. The word was used
+to mean an amorphous, unformed material in Psalms and medieval writing.
+
+The most famous golem narrative involves Judah Loew ben Bezalel, the
+late-16th-century rabbi of Prague. There are many tales differing on how the
+Golem was brought to life and afterwards controlled.
+COMMENT
+sub_comment_1.created_at = sub_comment_1.created_at - 2.hours
+sub_comment_1.save!
+
+sub_comment_2 = main_comment_reply = charlotte_cavatica.comments.create!(commentable_id: kavalier_and_clay.id,
+  commentable_type: "Text",
+  parent_comment_id: main_comment.id,
+  title: "Re: What is the origin of 'Golem'?",
+  body: <<-COMMENT)
+Tolkien's character (born Smeagol) is actually "Gollum", not Golem. They are, to
+my knowledge, unrelated.
+COMMENT
+sub_comment_2.created_at = sub_comment_2.created_at - 2.hours
+sub_comment_2.save!
+
+sub_comment_3 = dean_moriarty.comments.create!(commentable_id: kavalier_and_clay.id,
+  commentable_type: "Text",
+  parent_comment_id: main_comment_reply.id,
+  title: "Re: What is the origin of 'Golem'?",
+  body: <<-COMMENT)
+Yes. It doesn't seem that they are related in any way.
+COMMENT
+sub_comment_3.created_at = sub_comment_3.created_at - 15.minutes
+sub_comment_3.save!
+
+second_comment = holly_golightly.comments.create!(commentable_id: kavalier_and_clay.id,
+  commentable_type: "Text",
+  title: "Slow in the middle",
+  body: <<-COMMENT)
+Did anyone else find the story to slooooooooow down in the middle?
+COMMENT
+
+
 # set up guest user with some books
 guest.text_states.create!(text_id: my_name_is_red.id, state: :current)
 guest.text_states.create!(text_id: kavalier_and_clay.id, state: :read)
@@ -744,3 +800,8 @@ guest.text_states.create!(text_id: snow.id, state: :read)
 guest.text_states.create!(text_id: moby_dick.id, state: :read)
 guest.text_states.create!(text_id: harry_potter_2.id, state: :queue)
 guest.text_states.create!(text_id: harry_potter_3.id, state: :queue)
+
+
+# and give some friends
+guest.friends << holly_golightly
+guest.friends << dean_moriarty
