@@ -43,8 +43,9 @@ texts by a particular author, for a logged-in user (that is, with information
 about the user's interactions with those texts) we need a scope which gets the
 information in one fell swoop
 
+
 ```ruby
-# /app/models.text.rb
+# /app/models/text.rb
 def self.find_all_texts_by_author_for_user(author_id, user_id)
   Text.find_by_sql([<<-SQL, user_id, user_id, author_id])
     SELECT
@@ -64,7 +65,7 @@ def self.find_all_texts_by_author_for_user(author_id, user_id)
         text_authors.author_id = ?)
   SQL
 end
-
+```
 
 
 
