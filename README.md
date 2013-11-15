@@ -1,4 +1,6 @@
-# BiblioPile: A Rudimentary GoodReads.com Clone
+# BiblioPile
+
+## In which we clone GoodReads.com
 
 ####Table of Contents
 
