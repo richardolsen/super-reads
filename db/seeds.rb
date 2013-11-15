@@ -805,3 +805,15 @@ guest.text_states.create!(text_id: harry_potter_3.id, state: :queue)
 # and give some friends
 guest.friends << holly_golightly
 guest.friends << dean_moriarty
+
+
+# give the friends some books
+holly_golightly.text_states.create!(text_id: harry_potter_1.id, state: :current)
+holly_golightly.text_states.create!(text_id: snow.id, state: :current)
+holly_golightly.text_states.create!(text_id: kavalier_and_clay.id, state: :read)
+holly_golightly.text_states.create!(text_id: harry_potter_2.id, state: :queue)
+holly_golightly.text_states.create!(text_id: harry_potter_3.id, state: :queue)
+holly_golightly.text_states.create!(text_id: harry_potter_4.id, state: :queue)
+holly_golightly.text_states.create!(text_id: harry_potter_5.id, state: :queue)
+holly_golightly.text_states.create!(text_id: harry_potter_6.id, state: :queue)
+holly_golightly.text_states.create!(text_id: my_name_is_red.id, state: :queue)
