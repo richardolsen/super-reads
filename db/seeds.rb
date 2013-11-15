@@ -464,6 +464,11 @@ moby_dick.genres << lit_and_fiction
 herman_melville.genres << lit_and_fiction
 last_samurai.genres << lit_and_fiction
 helen_dewitt.genres << lit_and_fiction
+snow.genres << lit_and_fiction
+my_name_is_red.genres << lit_and_fiction
+orhan_pamuk.genres << lit_and_fiction
+kavalier_and_clay.genres << lit_and_fiction
+michael_chabon.genres << lit_and_fiction
 
 satire = Genre.create!(name: "Satire")
 lightning_rods.genres << satire
@@ -477,6 +482,12 @@ harry_potter_4.genres << young_adult
 harry_potter_5.genres << young_adult
 harry_potter_6.genres << young_adult
 j_k_rowling.genres << young_adult
+
+historical_fiction = Genre.create!(name: "Historical Fiction")
+my_name_is_red.genres << historical_fiction
+orhan_pamuk.genres << historical_fiction
+kavalier_and_clay.genres << historical_fiction
+michael_chabon.genres << historical_fiction
 
 
 
@@ -817,3 +828,14 @@ holly_golightly.text_states.create!(text_id: harry_potter_4.id, state: :queue)
 holly_golightly.text_states.create!(text_id: harry_potter_5.id, state: :queue)
 holly_golightly.text_states.create!(text_id: harry_potter_6.id, state: :queue)
 holly_golightly.text_states.create!(text_id: my_name_is_red.id, state: :queue)
+
+dean_moriarty.text_states.create!(text_id: kavalier_and_clay.id, state: :current)
+dean_moriarty.text_states.create!(text_id: last_samurai.id, state: :current)
+dean_moriarty.text_states.create!(text_id: moby_dick.id, state: :current)
+dean_moriarty.text_states.create!(text_id: harry_potter_1.id, state: :read)
+dean_moriarty.text_states.create!(text_id: harry_potter_2.id, state: :queue)
+dean_moriarty.text_states.create!(text_id: harry_potter_3.id, state: :queue)
+dean_moriarty.text_states.create!(text_id: harry_potter_4.id, state: :queue)
+dean_moriarty.text_states.create!(text_id: harry_potter_5.id, state: :queue)
+dean_moriarty.text_states.create!(text_id: harry_potter_6.id, state: :queue)
+dean_moriarty.text_states.create!(text_id: my_name_is_red.id, state: :queue)
