@@ -145,3 +145,8 @@ On a different level is integration with other social-media sites. At the moment
 there is the ability to [tweet](http://twitter.com/) about particular pages.
 Integration with other sites, like [Facebook](http://www.facebook.com/), would
 be a lovely feature.
+
+As a completely frivolous **bonus-feature** it would be nice to implement a version
+of the [_Amazon.com Knee-Jerk Contrarian Game_](http://waxy.org/2004/07/amazoncom_kneej/),
+allowing a user to browse particularly delightful low reviews of beloved books.
+Something like the [best-of Craigslist](http://www.craigslist.org/about/best/all/).
