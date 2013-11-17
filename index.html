@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Super-Reads by imurchie</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Super-Reads</h1>
+        <p>A clone of goodreads.com</p>
+
+        <p class="view"><a href="https://github.com/imurchie/super-reads">View the Project on GitHub <small>imurchie/super-reads</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/imurchie/super-reads/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/imurchie/super-reads/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/imurchie/super-reads">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="bibliopile" class="anchor" href="#bibliopile"><span class="octicon octicon-link"></span></a>BiblioPile</h1>
+
+<h2>
+<a name="in-which-we-clone-goodreadscom" class="anchor" href="#in-which-we-clone-goodreadscom"><span class="octicon octicon-link"></span></a>In which we clone GoodReads.com</h2>
+
+<h2>
+<a name="see-on-the-web-httpbibliopileorg" class="anchor" href="#see-on-the-web-httpbibliopileorg"><span class="octicon octicon-link"></span></a>See on the web: <a href="http://bibliopile.org">http://bibliopile.org</a>!</h2>
+
+<h4>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of Contents</h4>
+
+<ol>
+<li><a href="#readers">Introduction</a></li>
+<li>
+<a href="#server-side">Server-side</a>
+
+<ul>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#databasemodel">Database Model</a></li>
+</ul>
+</li>
+<li><a href="#client-side">Client-side</a></li>
+<li><a href="#todo">To Do</a></li>
+</ol><h2>
+<a name="readers" class="anchor" href="#readers"><span class="octicon octicon-link"></span></a>Readers</h2>
+
+<p>The great American novelist and essayist, Elwyn Brooks ('E. B.') White wrote, in
+the November 30, 1935 issue of <em>The New Yorker</em>, a short essay, "Irtnog," about the struggle
+between readers and writers</p>
+
+<blockquote>
+<p>Along about 1920 it became apparent that more things were being written than
+people had time to read.  That is to say, even if a man spent his entire time
+reading stories, articles, and news, as they appeared in books, magazines, and
+pamphlets, he fell behind.  This was no fault of the reading public; on the
+contrary, readers made a real effort to keep pace with writers, and utilized
+every spare moment during their walking hours.</p>
+</blockquote>
+
+<p>Obviously, in these days of even further accelerated production, in print and
+especially online, readers need a way to hone in on those books they actually
+want to read.</p>
+
+<p>Enter websites like <a href="https://www.goodreads.com/">GoodReads</a>, which allow readers
+to connect with other readers with similar tastes, and exchange information.</p>
+
+<h2>
+<a name="server-side" class="anchor" href="#server-side"><span class="octicon octicon-link"></span></a>Server-side</h2>
+
+<p>The backend is a <a href="http://rubyonrails.org/">Rails</a> 3.2.13 application exposing a
+<a href="http://www.json.org/">JSON</a> API, layered on top of a <a href="http://www.postgresql.org/">PostgreSQL</a>
+database. The API allows for accessing all the major database entities (users,
+texts, etc.) as well as some of the relationships, such as "friends."</p>
+
+<p>The only complex aspect of the server-side code is in the SQL for efficiently
+assembling the information needed by the client. For instance, to get all the
+texts by a particular author, for a logged-in user (that is, with information
+about the user's interactions with those texts) we need a scope which gets the
+information in one fell swoop</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># /app/models/text.rb</span>
+<span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find_all_texts_by_author_for_user</span><span class="p">(</span><span class="n">author_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">)</span>
+  <span class="no">Text</span><span class="o">.</span><span class="n">find_by_sql</span><span class="p">(</span><span class="o">[&lt;&lt;-</span><span class="no">SQL</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">author_id</span><span class="o">]</span><span class="p">)</span>
+<span class="sh">    SELECT</span>
+<span class="sh">      texts.*,</span>
+<span class="sh">      text_states.state AS state,</span>
+<span class="sh">      ratings.rating AS user_rating</span>
+<span class="sh">    FROM</span>
+<span class="sh">      texts</span>
+<span class="sh">    LEFT OUTER JOIN</span>
+<span class="sh">      text_states ON (texts.id = text_states.text_id AND</span>
+<span class="sh">        text_states.user_id = ?)</span>
+<span class="sh">    LEFT OUTER JOIN</span>
+<span class="sh">      ratings ON (texts.id = ratings.text_id AND</span>
+<span class="sh">        ratings.user_id = ?)</span>
+<span class="sh">    INNER JOIN</span>
+<span class="sh">      text_authors ON (texts.id = text_authors.text_id AND</span>
+<span class="sh">        text_authors.author_id = ?)</span>
+<span class="no">  SQL</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="authentication" class="anchor" href="#authentication"><span class="octicon octicon-link"></span></a>Authentication</h3>
+
+<p>Authentication is handled on the server with a hand-rolled solution based on
+random 16-character strings as session keys. I chose to write my own authentication
+system in order to have more control over the codebase and to limit the amount
+delegated to third parties. The system as it stands only has a single role, that
+of the current user, who is authorized to do any <em>creation</em> of elements. Other
+users can read the data of all elements.</p>
+
+<p>Users are identified by <em>two</em> unique attributes, <code>username</code> and <code>email</code>. They can
+use either to login. Internally <code>username</code> is given precedence.</p>
+
+<h3>
+<a name="database-model" class="anchor" href="#database-model"><span class="octicon octicon-link"></span></a>Database model</h3>
+
+<p>The central persisted entities are:</p>
+
+<ul>
+<li>Users</li>
+<li>Texts</li>
+<li>Genres</li>
+<li>Ratings</li>
+<li>Reviews</li>
+<li>Comments</li>
+</ul><p>The are then related through a series of join-tables. For instance, users can
+have "friends," so there is a table for relating users with other users in a
+single direction.</p>
+
+<p>The schema can be seen <a href="https://github.com/imurchie/super-reads/blob/master/db/schema.rb">here</a>.</p>
+
+<h2>
+<a name="client-side" class="anchor" href="#client-side"><span class="octicon octicon-link"></span></a>Client-side</h2>
+
+<p>In contrast to the ur-site, this site is largely a single-page application running
+the client-side JavaScript MVC framework <a href="http://backbonejs.org/">Backbone.js</a>, styled with
+<a href="http://www.twitter.com/">Twitter</a>'s <a href="http://getbootstrap.com/">Bootstrap</a> library.
+Bootstrap is a good fit since most of the functionality is confined to a few pages
+representing different sets of a relatively small collection of data types (see
+the <a href="#databasemodel">database model</a> for more details). This also has the advantage
+of allowing a more responsive experience.</p>
+
+<p>There is minimal caching of database entities on the client-side, in the form of
+available books (the "heaviest" resource in the system). These get cached but
+immediately updated while being viewed. With a larger load this caching could be
+shored up with a more sophisticated system for checking up-to-dateness, in addition
+to the possibility of being supplemented with server-side caching with a system
+such as Redis or Memcached.</p>
+
+<h2>
+<a name="to-do" class="anchor" href="#to-do"><span class="octicon octicon-link"></span></a>To Do</h2>
+
+<p>The implementation as it stands covers the basic functionality, but other features
+would be nice. Particularly those involved in interacting users. Thus we would like</p>
+
+<pre><code>- messaging between users
+- user recommendations (one user to another)
+- notifications of recent activity of other users
+- commenting on things other than books. Comments on authors, genres, reviews, etc.
+</code></pre>
+
+<p>Another level of recommendations would be nice, but would require a significantly
+larger data set and user base, to allow for automated taste-based recommendations.</p>
+
+<p>Comments and reviews are currently just treated as text. The only processing is
+to protect from injection attacks. It would be nice to allow for some markup so
+users can format their comments and reviews nicely. We could use a markdown-style
+processing engine with little difficultly.</p>
+
+<p>The last <em>big</em> desideratum is a feature for searching books, authors, and genres.
+Finding anything now is based on browsing, which is fine for a small amount of data
+but would be unwieldy with much more.</p>
+
+<p>On a different level is integration with other social-media sites. At the moment
+there is the ability to <a href="http://twitter.com/">tweet</a> about particular pages.
+Integration with other sites, like <a href="http://www.facebook.com/">Facebook</a>, would
+be a lovely feature.</p>
+
+<p>As a completely frivolous <strong>bonus-feature</strong> it would be nice to implement a version
+of the <a href="http://waxy.org/2004/07/amazoncom_kneej/"><em>Amazon.com Knee-Jerk Contrarian Game</em></a>,
+allowing a user to browse particularly delightful low reviews of beloved books.
+Something like the <a href="http://www.craigslist.org/about/best/all/">best-of Craigslist</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/imurchie">imurchie</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
