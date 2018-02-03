@@ -19,5 +19,5 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: gooder_reads_dev
+  database: postgresql-elliptical-44910
   pool: 5
